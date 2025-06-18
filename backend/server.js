@@ -1,21 +1,24 @@
 require("dotenv").config();
 const express = require("express");
-const db = require("./utils/db");
+const cookieParser = require("cookie-parser");
+
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
+app.use(express.json());
+app.use(cookieParser());
 
-// Test połączenia z bazą przy starcie serwera
-async function testDBConnection() {
-  try {
-    const [rows] = await db.query("SELECT 1");
-    console.log("✅ Connected to the database");
-  } catch (error) {
-    console.error("❌ Database connection error:", error.message);
+app.use("/api/auth", authRoutes);
+
+app.get(
+  "/api/secure-data",
+  require("./middleware/authMiddleware"),
+  (req, res) => {
+    res.json({ message: "Dostęp dla admina OK" });
   }
-}
+);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`✅ Server running on port ${PORT}`);
-  testDBConnection(); // wywołujemy test po uruchomieniu serwera
+  console.log(`✅ Server działa na porcie ${PORT}`);
 });
