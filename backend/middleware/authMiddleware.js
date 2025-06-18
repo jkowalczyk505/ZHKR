@@ -11,16 +11,17 @@ module.exports = (req, res, next) => {
     const now = Math.floor(Date.now() / 1000);
     const timeLeft = decoded.exp - now;
 
-    if (timeLeft < 6 * 60 * 60) {
+    if (timeLeft < 5 * 60) {
+      // mniej niż 15 minut
       const newToken = jwt.sign({ role: "admin" }, process.env.JWT_SECRET, {
-        expiresIn: "1d",
+        expiresIn: "1h",
       });
 
       res.cookie("token", newToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         sameSite: "strict",
-        maxAge: 24 * 60 * 60 * 1000,
+        maxAge: 60 * 60 * 1000, // 1 godzina = 3600000 ms
       });
     }
 
