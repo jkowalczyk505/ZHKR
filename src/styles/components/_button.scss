@@ -1,0 +1,30 @@
+.btn {
+  font-family: $font-main;
+  font-size: 1rem;
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
+  border: 2px solid $brown-700;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &.primary {
+    background-color: $brown-700;
+    color: $brown-100;
+
+    &:hover {
+      background-color: darken($brown-700, 5%);
+    }
+  }
+
+  &.outline {
+    background-color: transparent;
+    color: $brown-700;
+
+    &:hover {
+      background-color: $brown-700;
+      color: $brown-100;
+    }
+  }
+}

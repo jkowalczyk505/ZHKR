@@ -1,5 +1,6 @@
 import React from "react";
 import pigHero from "../assets/pig-hero.png";
+import Button from "../components/Button";
 
 function HomePage() {
     return (
@@ -10,7 +11,10 @@ function HomePage() {
                         <h1>Związek Hodowców <br />
                             Kawii Rasowych</h1>
                         <p>Aliqua reprehenderit mollit aliquip ea velit culpa nisi dolor sit aliquip elit. Cupidatat fugiat elit non reprehenderit minim laborum adipisicing elit ex eu incididunt nisi ad. Consequat commodo do incididunt velit. Nostrud occaecat nisi laborum laboris nostrud incididunt.</p>
-                        <div className="buttons"></div>
+                        <div className="buttons">
+                            <Button variant="primary">Dowiedz się więcej</Button>
+                            <Button variant="outline">Kontakt</Button>
+                        </div>
                     </div>
                     <img src={pigHero} alt="Świnka morska"></img>
                 </section>
