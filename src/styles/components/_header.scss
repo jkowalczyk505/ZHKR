@@ -3,26 +3,27 @@
     justify-content: center;
     position: relative;
     align-items: center;
-    padding: 1rem 0;
+    padding: 2rem 0;
     background-color: $dark_brown;
     img {
         position: absolute;
-        left: 4rem;
+        left: 5rem;
         bottom: -3rem;
         border-radius: 50%;
-        width: 8rem;
+        width: 9rem;
     }
     #main-nav {
         .menu {
             display: flex;
             list-style: none;
-            gap: 4rem;
+            gap: 5rem;
             .menu-item {
                 .nav-link {
                     color: $light_brown;
                     text-decoration: none;
                     font-size: 1.5rem;
-                    font-weight: 400;
+                    font-family: $font-heading;
+                    font-weight: 500;
                     &.active {
                     }
                     &:hover {

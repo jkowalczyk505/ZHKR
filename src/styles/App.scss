@@ -2,3 +2,17 @@
 @import "./components/footer";
 @import "./components/header";
 @import "./pages/home_page";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    font-family: $font-main;
+}
+
+h1, h2, h3 {
+    font-family: $font-heading;
+}
