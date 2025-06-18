@@ -10,9 +10,26 @@
 }
 
 body {
-    font-family: $font-main;
+  font-family: $font-main;
+  background-color: $brown-100;
+  color: $brown-700;
+  text-shadow: 0.5px 0.5px rgba(0, 0, 0, 0.1);
 }
 
 h1, h2, h3 {
-    font-family: $font-heading;
+  font-family: $font-heading;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.page {
+  min-height: 100vh;
+  padding-bottom: 3rem;
+
+  .content {
+    padding-top: 6rem;
+    padding-left: 7rem;
+    padding-right: 7rem;
+  }
 }

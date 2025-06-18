@@ -1,0 +1,35 @@
+.hero {
+    display: flex;
+    gap: 10%;
+    .hero-left {
+        width: auto;
+        h1 {
+            font-size: 3.3rem;
+            line-height: 4rem;
+            word-spacing: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 1.4rem;
+            color: $brown-700;
+            line-height: 2rem;
+        }
+
+        animation: fadeIn 0.8s ease-in-out;
+        @keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+    }
+    img {
+        width: 35%;
+        height: fit-content;
+        align-self: center;
+    }
+}

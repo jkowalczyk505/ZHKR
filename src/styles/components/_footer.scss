@@ -1,13 +1,12 @@
 .footer {
   background: $brown-700;
   color: $brown-300;
-  border-radius: 1.25rem 1.25rem 0 0;
   overflow: hidden;
 
   .footer-inner {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 1.2rem 1.2rem;
+    padding: 2rem;
     display: grid;
     grid-template-columns: auto 1fr auto;
     gap: 1.5rem;
@@ -102,7 +101,7 @@
   }
 
   .footer-bottom {
-    background: $brwon-900;
+    background: $brown-900;
     text-align: center;
     font-size: 0.75rem;
     padding: 0.5rem 1rem;
