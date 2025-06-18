@@ -28,3 +28,8 @@ exports.logout = (req, res) => {
   res.clearCookie("token");
   res.json({ success: true });
 };
+
+exports.me = (req, res) => {
+  // req.user zostało ustawione przez authMiddleware
+  res.json({ user: req.user });
+};
