@@ -4,7 +4,7 @@
     position: relative;
     align-items: center;
     padding: 2rem 0;
-    background-color: $brown-900;
+    background-color: $brown-700;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .12);
 
     img {
@@ -56,7 +56,7 @@
 
                     &.active {
                         color: $brown-100;
-                        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+                        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
                         &::after {
                             width: 100%;
                         }
