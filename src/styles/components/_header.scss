@@ -1,0 +1,34 @@
+.header {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    align-items: center;
+    padding: 1rem 0;
+    background-color: $dark_brown;
+    img {
+        position: absolute;
+        left: 4rem;
+        bottom: -3rem;
+        border-radius: 50%;
+        width: 8rem;
+    }
+    #main-nav {
+        .menu {
+            display: flex;
+            list-style: none;
+            gap: 4rem;
+            .menu-item {
+                .nav-link {
+                    color: $light_brown;
+                    text-decoration: none;
+                    font-size: 1.5rem;
+                    font-weight: 400;
+                    &.active {
+                    }
+                    &:hover {
+                    }
+                }
+            }
+        }
+    }
+}
