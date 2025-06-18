@@ -5,7 +5,8 @@
     align-items: center;
     padding: 2rem 0;
     background-color: $brown-900;
-    box-shadow: 0 2px 4px rgba(0,0,0,.12);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .12);
+
     img {
         position: absolute;
         left: 5rem;
@@ -13,11 +14,13 @@
         border-radius: 50%;
         width: 9rem;
     }
+
     #main-nav {
         .menu {
             display: flex;
             list-style: none;
             gap: 5rem;
+
             .menu-item {
                 .nav-link {
                     color: $brown-300;
@@ -27,10 +30,41 @@
                     font-weight: 500;
                     letter-spacing: 0.1rem;
                     position: relative;
-                    transition: color .25s;
-                    &.active {
+
+                    display: inline-block;
+                    transition: all 0.3s ease;
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        left: 0;
+                        bottom: -.35rem;
+                        width: 0;
+                        height: 2px;
+                        background: $brown-100;
+                        transition: width .3s;
                     }
-                    &:hover {
+
+                    &:hover,
+                    &:focus-visible {
+                        color: $brown-100;
+                        transform: scale(1.05);
+                        &::after {
+                            width: 100%;
+                        }
+                    }
+
+                    &.active {
+                        color: $brown-100;
+                        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+                        &::after {
+                            width: 100%;
+                        }
+                    }
+
+                    &:active {
+                        transform: scale(0.97);
+                        opacity: 0.9;
                     }
                 }
             }
