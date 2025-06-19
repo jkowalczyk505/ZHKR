@@ -8,6 +8,7 @@ const upload = require("../utils/upload");
 // publiczne
 router.get("/", ctrl.getAll);
 router.get("/:idOrSlug", ctrl.getOne);
+router.get("/:id/images", ctrl.getImages);
 
 // admin: CRUD
 router.post("/", auth, ctrl.create);

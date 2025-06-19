@@ -1,5 +1,6 @@
 // controllers/postController.js
 const Post = require("../models/post");
+const fs = require("fs");
 const path = require("path");
 
 exports.getAll = async (req, res) => {
@@ -66,14 +67,32 @@ exports.update = async (req, res) => {
 
 exports.remove = async (req, res) => {
   const { id } = req.params;
+
   try {
-    const [result] = await Post.remove(id);
-    if (result.affectedRows === 0)
+    // Najpierw znajdź post, aby pobrać ścieżkę do zdjęć
+    const [rows] = await Post.findOne(id);
+    if (!rows.length) {
       return res.status(404).json({ message: "Nie znaleziono wpisu" });
-    res.json({ message: "Wpis usunięty" });
+    }
+
+    const folder = rows[0].zdjecia; // np. "/uploads/posts/2"
+    const dirPath = path.join(__dirname, "..", "public", folder); // fizyczna ścieżka
+
+    // Usuń folder i jego zawartość, jeśli istnieje
+    if (fs.existsSync(dirPath)) {
+      await fs.promises.rm(dirPath, { recursive: true, force: true });
+    }
+
+    // Następnie usuń wpis z bazy
+    const [result] = await Post.remove(id);
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: "Nie znaleziono wpisu" });
+    }
+
+    res.json({ message: "Wpis i folder zdjęć usunięty" });
   } catch (e) {
     console.error(e);
-    res.status(500).json({ message: "Błąd serwera" });
+    res.status(500).json({ message: "Błąd serwera przy usuwaniu" });
   }
 };
 
@@ -89,6 +108,26 @@ exports.uploadImages = async (req, res) => {
     await Post.update(id, { zdjecia: folder });
     const urls = req.files.map((f) => `${folder}/${f.filename}`);
     res.json({ message: "Zdjęcia wgrane", images: urls });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ message: "Błąd serwera" });
+  }
+};
+
+exports.getImages = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const [rows] = await Post.findOne(id);
+    if (!rows.length)
+      return res.status(404).json({ message: "Post nie istnieje" });
+
+    const folder = rows[0].zdjecia; // np. "/uploads/posts/2"
+    const dirPath = path.join(__dirname, "..", "public", folder); // fizyczna ścieżka
+
+    const files = await fs.promises.readdir(dirPath); // odczyt plików z dysku
+    const urls = files.map((file) => path.posix.join(folder, file)); // URL-e
+
+    res.json({ images: urls });
   } catch (e) {
     console.error(e);
     res.status(500).json({ message: "Błąd serwera" });
