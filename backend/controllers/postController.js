@@ -6,12 +6,35 @@ const path = require("path");
 exports.getAll = async (req, res) => {
   try {
     const [rows] = await Post.findAll();
-    res.json(rows);
+
+    const postsWithThumbnails = await Promise.all(rows.map(async (post) => {
+      let miniatura = null;
+
+      if (post.zdjecia) {
+        const dirPath = path.join(__dirname, "..", "public", post.zdjecia);
+        try {
+          const files = await fs.promises.readdir(dirPath);
+          if (files.length > 0) {
+            miniatura = path.posix.join(post.zdjecia, files[0]); // np. "/uploads/posts/2/abc123.jpg"
+          }
+        } catch (err) {
+          console.warn(`Brak folderu lub plików dla postu ID ${post.id}`);
+        }
+      }
+
+      return {
+        ...post,
+        miniatura,
+      };
+    }));
+
+    res.json(postsWithThumbnails);
   } catch (e) {
     console.error(e);
     res.status(500).json({ message: "Błąd serwera" });
   }
 };
+
 
 exports.getOne = async (req, res) => {
   const { idOrSlug } = req.params;

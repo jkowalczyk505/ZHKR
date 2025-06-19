@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import pigHero from "../assets/pig-hero.png";
 import Button from "../components/Button";
+import NewsItem from "../components/news/NewsItem";
+
+const API_URL = process.env.REACT_APP_API_URL;
 
 function HomePage() {
+    const [news, setNews] = useState([]);
+    useEffect(() => {
+        const fetchNews = async () => {
+            try {
+                const res = await axios.get(`${API_URL}/api/posts`);
+                setNews(res.data);
+            } catch (err) {
+                console.error("Błąd podczas pobierania newsów:", err);
+            }
+        };
+
+        fetchNews();
+    }, []);
+
     return (
         <main className="page">
             <div className="content">
@@ -22,38 +40,22 @@ function HomePage() {
                 <section className="news-container">
                     <h2>Aktualności</h2>
                     <div className="news">
-                        <div className="news-item">
-                            <img src={pigHero} alt="Miniatura"></img>
-                            <div className="news-item-right">
-                                <span className="news-item-date">19.06.2026</span>
-                                <h3 className="news-item-title">Nowe zasady członkowstwa</h3>
-                                <p className="news-item-description">Ullamco reprehenderit dolor adipisicing ad tempor aliquip mollit quis minim reprehenderit dolore aliquip ullamco. Non est occaecat pariatur cillum occaecat.</p>
-                            </div>
-                        </div>
-                        <div className="news-item">
-                            <img src={pigHero} alt="Miniatura"></img>
-                            <div className="news-item-right">
-                                <span className="news-item-date">19.06.2026</span>
-                                <h3 className="news-item-title">Nowe zasady członkowstwa</h3>
-                                <p className="news-item-description">Ullamco reprehenderit dolor adipisicing ad tempor aliquip mollit quis minim reprehenderit dolore aliquip ullamco. Non est occaecat pariatur cillum occaecat.</p>
-                            </div>
-                        </div>
-                        <div className="news-item">
-                            <img src={pigHero} alt="Miniatura"></img>
-                            <div className="news-item-right">
-                                <span className="news-item-date">19.06.2026</span>
-                                <h3 className="news-item-title">Nowe zasady członkowstwa</h3>
-                                <p className="news-item-description">Ullamco reprehenderit dolor adipisicing ad tempor aliquip mollit quis minim reprehenderit dolore aliquip ullamco. Non est occaecat pariatur cillum occaecat.</p>
-                            </div>
-                        </div>
-                        <div className="news-item">
-                            <img src={pigHero} alt="Miniatura"></img>
-                            <div className="news-item-right">
-                                <span className="news-item-date">19.06.2026</span>
-                                <h3 className="news-item-title">Nowe zasady członkowstwa</h3>
-                                <p className="news-item-description">Ullamco reprehenderit dolor adipisicing ad tempor aliquip mollit quis minim reprehenderit dolore aliquip ullamco. Non est occaecat pariatur cillum occaecat.</p>
-                            </div>
-                        </div>
+                        <div className="news">
+                        {news.map((item) => (
+                            <NewsItem
+                                key={item.id}
+                                title={item.tytul}
+                                description={item.opis.slice(0, 200) + "..."}
+                                date={
+                                item.data_utworzenia
+                                    ? new Date(item.data_utworzenia).toLocaleDateString("pl-PL")
+                                    : "brak daty"
+                                }
+                                image={item.miniatura ? item.miniatura : pigHero}
+                                slug={item.url}
+                            />
+                        ))}
+                    </div>
                     </div>
                     <div className="pagination">
                         <Button variant="primary">1</Button>
@@ -61,7 +63,7 @@ function HomePage() {
                         <Button variant="outline">3</Button>
                         <span className="dots">...</span>
                         <Button variant="outline">8</Button>
-                        <Button variant="outline">></Button>
+                        <Button variant="outline">^</Button>
                     </div>
                 </section>
             </div>

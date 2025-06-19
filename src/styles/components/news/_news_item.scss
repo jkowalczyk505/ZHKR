@@ -1,0 +1,12 @@
+.news-item {
+    display: flex;
+    img {
+        width: 50%;
+        height: fit-content;
+    }
+    .news-item-right {
+        .news-item-date {}
+        .news-item-title {}
+        .news-item-description {}
+    }
+}
