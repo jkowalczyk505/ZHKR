@@ -1,15 +1,16 @@
 .news-item {
     display: flex;
     gap: 1.5rem;
-    padding-right: 2rem;
+    padding: 1rem;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 
-    img, .news-placeholder {
+    img,
+    .news-placeholder {
         width: 250px;
         height: 250px;
         object-fit: cover;
         aspect-ratio: 1/1;
-        border-radius: 15px;
-        border: 1px dashed $brown-700;
+
     }
 
     .news-placeholder {
@@ -21,22 +22,27 @@
             font-size: 100px
         }
     }
+
     .news-item-right {
         .news-item-date {
             font-style: italic;
         }
+
         .news-item-title {
             margin-top: 0.7rem;
             font-size: 1.5rem;
+
             a {
                 text-decoration: none;
                 color: $brown-900;
             }
         }
+
         .news-item-description {
             margin-top: 0.5rem;
             font-size: 1.2rem;
         }
+
         .news-item-button {
             margin-top: 1.5rem;
         }
