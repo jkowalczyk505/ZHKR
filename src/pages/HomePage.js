@@ -34,6 +34,10 @@ function HomePage() {
         </section>
 
         <NewsSection />
+
+        <section className="breedings-container with-line">
+          <h2>Nasze hodowle</h2>
+        </section>
       </div>
     </main>
   );

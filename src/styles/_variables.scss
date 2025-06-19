@@ -3,6 +3,7 @@ $brown-700: #72472b;
 $brown-900: darken($brown-700, 3%);
 $brown-300: #e4c9a0;
 $brown-100: #ffe6ba;
+$brown-100-lighten: lighten($brown-100, 2%);
 
 // ==== CZCIONKI ====
 $font-main: 'Open-sans', sans-serif;
