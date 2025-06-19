@@ -1,0 +1,54 @@
+.notfound-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $brown-100;
+    padding: 2rem;
+}
+
+.notfound-box {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+}
+
+.notfound-text {
+    text-align: center;
+
+    h1 {
+        font-size: 7rem;
+        font-family: $font-heading;
+        color: $brown-700;
+    }
+
+    h2 {
+        font-size: 2.5rem;
+        font-family: $font-heading;
+        color: $brown-700;
+        margin-bottom: 1rem;
+        text-transform: none;
+    }
+
+    p {
+        font-size: 1.1rem;
+        color: $brown-700;
+        margin-bottom: 2rem;
+        line-height: 1.7rem;
+    }
+
+    .btn {
+        font-size: 1rem;
+        padding: 0.7rem 1.5rem;
+        text-transform: none;
+    }
+}
+
+.notfound-image {
+    max-width: 350px;
+    width: 100%;
+    height: auto;
+    flex-shrink: 0;
+}
