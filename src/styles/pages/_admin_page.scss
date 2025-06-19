@@ -1,0 +1,19 @@
+.admin-page {
+
+    .admin-description {
+        margin: 4rem 0;
+        font-size: 1.4rem;
+        color: $brown-700;
+        text-align: center;
+    }
+
+
+    .tiles-container {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 2rem;
+    }
+
+}

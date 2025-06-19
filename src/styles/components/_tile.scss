@@ -1,0 +1,36 @@
+.admin-tile {
+    background-color: $brown-100-lighten;
+    color: $brown-700;
+    border: 2px solid $brown-300;
+    border-radius: 12px;
+    padding: 3rem 4rem;
+    text-align: center;
+    font-family: $font-heading;
+    font-size: 1.4rem;
+    text-decoration: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease;
+
+    .icon {
+        margin-bottom: 1rem;
+        color: $brown-700;
+        transition: color 0.3s ease;
+    }
+
+    h2 {
+        transition: color 0.3s ease;
+    }
+
+    &:hover {
+        background-color: $brown-700;
+        color: $brown-100;
+
+        .icon {
+            color: $brown-100;
+        }
+
+        h2 {
+            color: $brown-100;
+        }
+    }
+}
