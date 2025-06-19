@@ -6,6 +6,7 @@
 @import "./components/news/news_item";
 @import "./components/news/news_section";
 @import "./components/news/pagination";
+@import "./components/form";
 
 * {
   margin: 0;
@@ -20,7 +21,9 @@ body {
   text-shadow: 0.5px 0.5px rgba(0, 0, 0, 0.1);
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: $font-heading;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
