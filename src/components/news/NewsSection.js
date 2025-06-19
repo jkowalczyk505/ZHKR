@@ -32,7 +32,7 @@ function NewsSection() {
 
   return (
     <section className="news-container">
-      <h2>Aktualności</h2>
+      <h2 className="with-line">Aktualności</h2>
       <div className="news-grid">
         {visibleNews.map((item) => (
           <NewsItem
