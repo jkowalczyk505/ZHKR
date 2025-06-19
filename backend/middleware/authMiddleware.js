@@ -17,11 +17,11 @@ module.exports = (req, res, next) => {
         expiresIn: "1h",
       });
 
-      res.cookie("token", newToken, {
+      res.cookie("token", token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
-        maxAge: 60 * 60 * 1000, // 1 godzina = 3600000 ms
+        secure: false, // NIE używamy HTTPS lokalnie
+        sameSite: "lax", // "lax" działa z przekierowaniami i formularzami
+        maxAge: 60 * 60 * 1000, // 1 godzina
       });
     }
 

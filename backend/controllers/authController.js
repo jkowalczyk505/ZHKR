@@ -13,9 +13,9 @@ exports.login = async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      maxAge: 60 * 60 * 1000, // 1 godzina = 3600000 ms
+      secure: false, // NIE używamy HTTPS lokalnie
+      sameSite: "lax", // "lax" działa z przekierowaniami i formularzami
+      maxAge: 60 * 60 * 1000, // 1 godzina
     });
 
     return res.json({ success: true });
