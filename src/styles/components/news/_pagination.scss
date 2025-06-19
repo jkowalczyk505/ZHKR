@@ -1,0 +1,19 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2.5rem;
+
+  .btn {
+    padding: 0.5rem 1rem;
+    min-width: 2.5rem;
+    text-align: center;
+  }
+  .dots {
+    padding: 0.5rem 0.8rem;
+    color: $brown-700;
+    font-size: 1rem;
+    opacity: 0.7;
+  }
+}

@@ -1,0 +1,11 @@
+.news-container {
+  h2 {
+    font-size: 2.8rem;
+    margin-bottom: 2rem;
+  }
+  .news-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem 3rem;
+  }
+}
