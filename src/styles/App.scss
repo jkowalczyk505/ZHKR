@@ -41,3 +41,21 @@ h3 {
     padding-right: 7rem;
   }
 }
+
+.with-line {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  color: $brown-700;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 120%;
+    height: 3px;
+    background-color: $brown-700;
+    border-radius: 2px;
+  }
+}
