@@ -6,8 +6,7 @@
 }
 
 .form-box {
-    background-color: white;
-    border: 1px solid $brown-300;
+    background-color: $brown-300;
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -18,14 +17,14 @@
     h2 {
         font-size: 1.8rem;
         color: $brown-700;
-        margin-bottom: 1.5rem;
+        margin-bottom: 3rem;
         text-align: center;
     }
 
     form {
         display: flex;
         flex-direction: column;
-        gap: 1rem;
+        gap: 1.5rem;
 
         .form-field {
             font-family: $font-main;
@@ -33,7 +32,7 @@
             padding: 0.7rem 1rem;
             border: 1px solid $brown-300;
             border-radius: 5px;
-            background-color: #fff;
+            background-color: $brown-100-lighten;
             transition: border 0.2s;
             color: $brown-900;
 
