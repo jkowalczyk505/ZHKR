@@ -25,6 +25,10 @@
     }
 
     .news-item-right {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
         .news-item-date {
             font-style: italic;
         }
@@ -45,7 +49,7 @@
         }
 
         .news-item-button {
-            margin-top: 1.5rem;
+            margin-bottom: 1rem;
         }
     }
 }
