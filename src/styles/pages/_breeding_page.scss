@@ -1,0 +1,15 @@
+.map {
+    .map-tile {
+        display: flex;
+        background-color: $light-color;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        p {
+            width: 40%;
+            padding: 2rem;
+            font-size: 1.8rem;
+            font-style: italic;
+            align-content: center;
+            line-height: 3rem;
+        }
+    }
+}

@@ -1,0 +1,92 @@
+.map-wrapper {
+    position: relative;
+    width: 60%;
+    max-width: 60%;
+    height: 500px;
+
+    .map-container {
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+
+        .leaflet-control-zoom {
+            border: none;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: $dark-color;
+
+            a {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: $light-color;
+                font-size: 1.2rem;
+                padding: 0.5rem 0.8rem;
+                background-color: $dark-color;
+                transition: background-color 0.3s ease;
+                border-bottom: 1px solid $light-color;
+
+                &:hover {
+                    background-color: $accent-color;
+                    color: $dark-color;
+                }
+
+                &:last-child {
+                    border-bottom: none;
+                }
+            }
+        }
+
+        .reset-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 999;
+            background-color: $dark-color;
+            color: $light-color;
+            border: none;
+            border-radius: 8px;
+            padding: 0.4rem 0.6rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+            &:hover {
+                background-color: $accent-color;
+                color: $dark-color;
+            }
+        }
+
+        .leaflet-popup-content-wrapper {
+            background: $secondary-color;
+            color: $light-color;
+            font-family: $font-main;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            padding: 0.5rem 0.7rem;
+        }
+
+        .leaflet-popup-tip {
+            background: $secondary-color;
+        }
+
+        .leaflet-popup-content {
+            margin: 0;
+            font-size: 0.8rem;
+            line-height: 1.4;
+
+            br {
+                display: block;
+                margin-bottom: 0.3rem;
+            }
+        }
+
+        .leaflet-popup-close-button {
+            color: $light-color;
+            font-size: 1rem;
+
+            &:hover {
+                color: $accent-color;
+            }
+        }
+    }
+}
