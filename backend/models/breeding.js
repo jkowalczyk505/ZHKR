@@ -14,36 +14,36 @@ module.exports = {
     const {
       nazwa,
       numer,
-      właściciel,
+      wlasciciel,
       rasy,
       telefon,
       email,
-      miejscowość,
-      województwo,
+      miejscowosc,
+      wojewodztwo,
       gmina,
       fb,
       ig,
       www,
-      zdjęcie,
+      zdjecie,
     } = data;
     return db.query(
       `INSERT INTO hodowle
-       (nazwa,numer,właściciel,rasy,telefon,email,miejscowość,województwo,gmina,fb,ig,www,zdjęcie)
+       (nazwa,numer,wlasciciel,rasy,telefon,email,miejscowosc,wojewodztwo,gmina,fb,ig,www,zdjecie)
        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)`,
       [
         nazwa,
         numer,
-        właściciel,
+        wlasciciel,
         rasy,
         telefon,
         email,
-        miejscowość,
-        województwo,
+        miejscowosc,
+        wojewodztwo,
         gmina,
         fb,
         ig,
         www,
-        zdjęcie,
+        zdjecie,
       ]
     );
   },
