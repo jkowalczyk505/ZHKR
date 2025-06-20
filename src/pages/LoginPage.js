@@ -42,7 +42,7 @@ const LoginPage = () => {
             placeholder="Hasło"
           />
           {error && <p className="form-error">{error}</p>}
-          <Button type="submit" variant="outline">
+          <Button type="submit" variant="primary">
             Zaloguj
           </Button>
         </form>
