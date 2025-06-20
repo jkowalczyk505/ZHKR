@@ -3,6 +3,7 @@ import pigHero from "../assets/pig-hero.png";
 import Button from "../components/Button";
 import NewsSection from "../components/news/NewsSection";
 import BreedingCarousel from "../components/breedings/BreedingCarousel";
+import BreedingItem from "../components/breedings/BreedingItem";
 
 function HomePage() {
   return (
