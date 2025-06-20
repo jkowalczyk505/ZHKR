@@ -52,13 +52,13 @@ function BreedingCarousel() {
     responsive: [
       {
         breakpoint: 960,
-        settings: { slidesToShow: 2 }
+        settings: { slidesToShow: 2 },
       },
       {
         breakpoint: 640,
-        settings: { slidesToShow: 1 }
-      }
-    ]
+        settings: { slidesToShow: 1 },
+      },
+    ],
   };
 
   return (
@@ -83,7 +83,9 @@ function BreedingCarousel() {
         ))}
       </Slider>
       <div className="btn-all-breadings">
-        <Button variant="primary" to="/hodowle">Pokaż wszystkie</Button>
+        <Button variant="primary" to="/hodowle">
+          Pokaż wszystkie
+        </Button>
       </div>
     </section>
   );
