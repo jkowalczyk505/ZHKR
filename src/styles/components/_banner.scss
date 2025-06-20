@@ -1,0 +1,39 @@
+.banner {
+    position: relative;
+    height: 60vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $light-color;
+    text-align: center;
+
+    .banner-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5); // przyciemnienie
+        z-index: 1;
+    }
+
+    .banner-content {
+        position: relative;
+        z-index: 2;
+        font-family: $font-heading;
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: $accent-color;
+        }
+
+        p {
+            font-size: 1.5rem;
+            font-family: $font-main;
+            color: $light-color;
+        }
+    }
+}
