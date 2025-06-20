@@ -26,7 +26,17 @@ function Header() {
                 `nav-link ${isActive ? "active" : ""}`
               }
             >
-              Nasze hodowle
+              Hodowle
+            </NavLink>
+          </li>
+          <li className="menu-item">
+            <NavLink
+              to="/wiedza"
+              className={({ isActive }) =>
+                `nav-link ${isActive ? "active" : ""}`
+              }
+            >
+              Wiedza
             </NavLink>
           </li>
           <li className="menu-item">
