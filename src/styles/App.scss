@@ -12,6 +12,7 @@
 @import "./components/tile";
 @import "./components/breedings/breeding_carousel";
 @import "./components/breedings/breeding_item";
+@import "./animations";
 
 
 * {
@@ -55,21 +56,30 @@ h3 {
   section {
     padding: 6rem;
   }
+
   .dark-section {
-    background-color: $secondary-color;;
+    background-color: $secondary-color;
+    ;
     color: $light-color;
+
     .with-line {
       &::after {
         background-color: $light-color;
       }
     }
   }
+
   .light-section {
     background-color: $main-color;
-    h1,h2,h3 {
+
+    h1,
+    h2,
+    h3 {
       color: $secondary-color-darken;
     }
+
     color: $secondary-color;
+
     .with-line {
       &::after {
         background-color: $secondary-color;

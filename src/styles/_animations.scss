@@ -1,0 +1,65 @@
+// === Animacje ogólne ===
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-40px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(40px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+// === Klasy użytkowe ===
+
+.fade-in {
+    animation: fadeIn 1s ease-out both;
+}
+
+.slide-in-up {
+    animation: slideInUp 1s ease-out both;
+}
+
+.slide-in-left {
+    animation: slideInLeft 1s ease-out both;
+}
+
+.slide-in-right {
+    animation: slideInRight 1s ease-out both;
+}

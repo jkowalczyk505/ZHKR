@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NewsItem from "./NewsItem";
 import Pagination from "./Pagination";
+import useScrollReveal from "../../hooks/useScrollReveal";
 
 const API_URL = process.env.REACT_APP_API_URL;
 const POSTS_PER_PAGE = 4;
 
 function NewsSection() {
+  useScrollReveal(".news-heading", "slide-in-left");
   const [news, setNews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -32,12 +34,14 @@ function NewsSection() {
 
   return (
     <section className="news-container light-section">
-      <h2 className="with-line">Aktualności</h2>
+      <h2 className="with-line news-heading">Aktualności</h2>
       <div className="news-grid">
         {visibleNews.map((item) => {
           const MAX = 120;
           const shortDescription =
-            item.opis.length > MAX ? item.opis.slice(0, MAX) + "..." : item.opis;
+            item.opis.length > MAX
+              ? item.opis.slice(0, MAX) + "..."
+              : item.opis;
 
           return (
             <NewsItem
