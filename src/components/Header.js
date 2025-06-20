@@ -59,6 +59,16 @@ function Header() {
               Kontakt
             </NavLink>
           </li>
+          <li className="menu-item">
+            <NavLink
+              to="/pliki"
+              className={({ isActive }) =>
+                `nav-link ${isActive ? "active" : ""}`
+              }
+            >
+              Pliki
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </header>

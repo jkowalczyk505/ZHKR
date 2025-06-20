@@ -31,23 +31,29 @@ function NewsSection() {
   const visibleNews = news.slice(startIndex, startIndex + POSTS_PER_PAGE);
 
   return (
-    <section className="news-container">
+    <section className="news-container light-section">
       <h2 className="with-line">Aktualności</h2>
       <div className="news-grid">
-        {visibleNews.map((item) => (
-          <NewsItem
-            key={item.id}
-            title={item.tytul}
-            description={item.opis.slice(0, 200) + "..."}
-            date={
-              item.data_utworzenia
-                ? new Date(item.data_utworzenia).toLocaleDateString("pl-PL")
-                : "brak daty"
-            }
-            image={item.miniatura}
-            slug={item.url}
-          />
-        ))}
+        {visibleNews.map((item) => {
+          const MAX = 120;
+          const shortDescription =
+            item.opis.length > MAX ? item.opis.slice(0, MAX) + "..." : item.opis;
+
+          return (
+            <NewsItem
+              key={item.id}
+              title={item.tytul}
+              description={shortDescription}
+              date={
+                item.data_utworzenia
+                  ? new Date(item.data_utworzenia).toLocaleDateString("pl-PL")
+                  : "brak daty"
+              }
+              image={item.miniatura}
+              slug={item.url}
+            />
+          );
+        })}
       </div>
 
       <Pagination

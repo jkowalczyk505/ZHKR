@@ -2,12 +2,13 @@ import React from "react";
 import pigHero from "../assets/pig-hero.png";
 import Button from "../components/Button";
 import NewsSection from "../components/news/NewsSection";
+import BreedingCarousel from "../components/breedings/BreedingCarousel";
 
 function HomePage() {
 
   return (
     <main className="page">
-        <section className="hero">
+        <section className="hero dark-section">
           <div className="hero-left">
             <h1>
               Związek Hodowców <br />
@@ -34,9 +35,7 @@ function HomePage() {
 
         <NewsSection />
 
-        <section className="breedings-container">
-          <h2 className="with-line">Nasze hodowle</h2>
-        </section>
+        <BreedingCarousel />
     </main>
   );
 }
