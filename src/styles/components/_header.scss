@@ -4,7 +4,7 @@
     position: relative;
     align-items: center;
     padding: 2rem 0;
-    background-color: $brown-700;
+    background-color: $secondary-color-darken;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
 
     img {
@@ -23,7 +23,7 @@
 
             .menu-item {
                 .nav-link {
-                    color: $brown-300;
+                    color: $accent-color;
                     text-decoration: none;
                     font-size: 1rem;
                     font-family: $font-heading;
@@ -42,21 +42,23 @@
                         bottom: -.35rem;
                         width: 0;
                         height: 2px;
-                        background: $brown-100;
+                        background: $light-color;
                         transition: width .3s;
                     }
 
                     &:hover,
                     &:focus-visible {
-                        color: $brown-100;
+                        color: $light-color;
                         transform: scale(1.05);
+
                         &::after {
                             width: 100%;
                         }
                     }
 
                     &.active {
-                        color: $brown-100;
+                        color: $light-color;
+
                         &::after {
                             width: 100%;
                         }

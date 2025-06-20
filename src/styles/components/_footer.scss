@@ -1,6 +1,6 @@
 .footer {
-  background: $brown-700;
-  color: $brown-300;
+  background: $secondary-color;
+  color: $accent-color;
   overflow: hidden;
 
   .footer-inner {
@@ -65,7 +65,7 @@
 
       &:hover,
       &:focus-visible {
-        border-color: $brown-100;
+        border-color: $accent-color;
       }
     }
   }
@@ -96,12 +96,12 @@
     .icon {
       width: 18px;
       height: 18px;
-      color: $brown-100;
+      color: $main-color;
     }
   }
 
   .footer-bottom {
-    background: $brown-900;
+    background: $secondary-color-darken;
     text-align: center;
     font-size: 0.75rem;
     padding: 0.5rem 1rem;

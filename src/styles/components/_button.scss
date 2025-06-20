@@ -3,28 +3,28 @@
   font-size: 1rem;
   padding: 0.7rem 1.5rem;
   border-radius: 6px;
-  border: 2px solid $brown-700;
   text-transform: uppercase;
   letter-spacing: 0.05rem;
   cursor: pointer;
   transition: all 0.3s ease;
 
   &.primary {
-    background-color: $brown-700;
-    color: $brown-100;
+    background-color: $dark-color;
+    color: $light-color;
 
     &:hover {
-      background-color: darken($brown-700, 5%);
+      background-color: $accent-color;
+      color: $dark-color;
     }
   }
 
   &.outline {
-    background-color: $brown-100-lighten;
-    color: $brown-700;
+    background-color: $secondary-color-lighten;
+    color: $light-color;
 
     &:hover {
-      background-color: $brown-700;
-      color: $brown-100;
+      background-color: $main-color;
+      color: $dark-color;
     }
   }
 }

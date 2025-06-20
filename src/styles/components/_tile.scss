@@ -1,0 +1,35 @@
+.admin-tile {
+    background-color: $light-color;
+    color: $secondary-color;
+    border-radius: 12px;
+    padding: 3rem 4rem;
+    text-align: center;
+    font-family: $font-heading;
+    font-size: 1.4rem;
+    text-decoration: none;
+    box-shadow: 0 2px 4px rgba(0, 1, 1, 0.1);
+    transition: background-color 0.3s ease;
+
+    .icon {
+        margin-bottom: 1rem;
+        color: $secondary-color;
+        transition: color 0.3s ease;
+    }
+
+    h2 {
+        transition: color 0.3s ease;
+    }
+
+    &:hover {
+        background-color: $secondary-color;
+        color: $main-color;
+
+        .icon {
+            color: $main-color;
+        }
+
+        h2 {
+            color: $main-color;
+        }
+    }
+}
