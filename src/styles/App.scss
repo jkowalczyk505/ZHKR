@@ -14,6 +14,8 @@
 @import "./components/breedings/breeding_item";
 @import "./animations";
 
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
 
 * {
   margin: 0;
@@ -32,6 +34,7 @@ h3 {
   font-family: $font-heading;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.15);
 }
 
 .with-line {

@@ -1,8 +1,9 @@
 import React from "react";
 import { FaPhoneAlt, FaEnvelope, FaFacebookF, FaInstagram } from "react-icons/fa";
+import { TbWorldWww } from "react-icons/tb";
 import { IoImageOutline } from "react-icons/io5";
 
-function BreedingItem({ name, image, address, owner, breeds, phone, email, fb, ig }) {
+function BreedingItem({ name, image, city, province, owner, breeds, phone, email, fb, ig, www }) {
   return (
     <div className="breeding-item">
       <div className="breeding-image">
@@ -16,14 +17,18 @@ function BreedingItem({ name, image, address, owner, breeds, phone, email, fb, i
         <h3 className="breeding-name">{name}</h3>
       </div>
       <div className="breeding-info">
-        <p>{address}</p>
-        <p>{owner}</p>
-        <p>Rasy: {breeds}</p>
+        <div className="info-text">
+            <p><em>Właściciel: </em>{owner}</p>
+            <p><em>Rasy: </em>{breeds}</p>
+            <p><em>Miasto: </em>{city}</p>
+            <p><em>Województwo: </em>{province}</p>
+        </div>
         <div className="breeding-icons">
-          {phone && <FaPhoneAlt title="Telefon" />}
-          {email && <FaEnvelope title="Email" />}
-          {fb && <FaFacebookF title="Facebook" />}
-          {ig && <FaInstagram title="Instagram" />}
+          {phone && <FaPhoneAlt />}
+          {email && <FaEnvelope />}
+          {fb && <FaFacebookF />}
+          {ig && <FaInstagram />}
+          {www && <TbWorldWww />}
         </div>
       </div>
     </div>

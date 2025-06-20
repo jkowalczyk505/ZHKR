@@ -1,6 +1,47 @@
 .breedings-container {
   h2 {
     font-size: 2.7vw;
-    color: $light-color;
+    margin-bottom: 4rem;
+  }
+  .breeding-carousel {
+    width: 75%;
+    justify-self: center;
+    
+    .custom-arrow {
+      width: 46px;
+      height: 46px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: $dark-color;
+      border-radius: 50%;
+      box-shadow: 0 4px 8px rgba(0,0,0,.25);
+      cursor: pointer;
+      transition: background .3s, transform .2s;
+
+      &::before { display: none; }
+
+      &:hover,
+      &:focus {
+        background: $accent-color;
+        svg {
+          color: $dark-color;
+        }
+      }
+
+      &.prev   { left: -100px;  }
+      &.next   { right: -100px; }
+
+      svg {
+        font-size: 1.4rem;
+        color: $light-color;
+      }
+    }
+  }
+  .btn-all-breadings {
+    margin-top: 2rem;
+    justify-self: center;
   }
 }
