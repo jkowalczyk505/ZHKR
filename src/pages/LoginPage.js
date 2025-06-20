@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Button from "../components/Button"; // zakładam że tu jest
+import Button from "../components/Button";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -42,7 +42,9 @@ const LoginPage = () => {
             placeholder="Hasło"
           />
           {error && <p className="form-error">{error}</p>}
-          <Button type="submit">Zaloguj</Button>
+          <Button type="submit" variant="outline">
+            Zaloguj
+          </Button>
         </form>
       </div>
     </div>
