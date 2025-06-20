@@ -7,7 +7,6 @@ function HomePage() {
 
   return (
     <main className="page">
-      <div className="content">
         <section className="hero">
           <div className="hero-left">
             <h1>
@@ -35,10 +34,9 @@ function HomePage() {
 
         <NewsSection />
 
-        <section className="breedings-container with-line">
-          <h2>Nasze hodowle</h2>
+        <section className="breedings-container">
+          <h2 className="with-line">Nasze hodowle</h2>
         </section>
-      </div>
     </main>
   );
 }

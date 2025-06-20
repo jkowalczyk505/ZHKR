@@ -1,5 +1,5 @@
 .footer {
-  background: $secondary-color;
+  background: $secondary-color-darken;
   color: $accent-color;
   overflow: hidden;
 
@@ -101,7 +101,7 @@
   }
 
   .footer-bottom {
-    background: $secondary-color-darken;
+    background: $dark-color;
     text-align: center;
     font-size: 0.75rem;
     padding: 0.5rem 1rem;

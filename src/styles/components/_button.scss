@@ -19,12 +19,12 @@
   }
 
   &.outline {
-    background-color: $secondary-color-lighten;
-    color: $light-color;
+    background-color: $main-color;
+    color: $dark-color;
 
     &:hover {
-      background-color: $main-color;
-      color: $dark-color;
+      background-color: $secondary-color-darken;
+      color: $light-color;
     }
   }
 }

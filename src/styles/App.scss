@@ -21,7 +21,7 @@
 body {
   font-family: $font-main;
   background-color: $main-color;
-  color: $secondary-color;
+  color: $secondary-color-lighten;
   text-shadow: 0.5px 0.5px rgba(0, 0, 0, 0.1);
 }
 
@@ -31,16 +31,14 @@ h3 {
   font-family: $font-heading;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
+  color: $secondary-color-darken;
 }
 
 .page {
   min-height: 100vh;
-  padding-bottom: 3rem;
 
-  .content {
-    padding-top: 6rem;
-    padding-left: 7rem;
-    padding-right: 7rem;
+  section {
+    padding: 6rem;
   }
 }
 

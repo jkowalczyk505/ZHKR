@@ -22,9 +22,9 @@ function NewsItem({ title, description, date, image, slug }) {
                 <p className="news-item-description">{description}</p>
 
                 <div className="news-item-button">
-                    <Button variant="outline" to={`/aktualnosci/${slug}`}>
-                        Czytaj więcej
-                    </Button>
+                <Button variant="outline" to={`/aktualnosci/${slug}`}>
+                    Czytaj więcej
+                </Button>
                 </div>
             </div>
         </div>
