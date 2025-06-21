@@ -58,7 +58,7 @@ function BreedingMap() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("/api/hodowle");
+        const res = await axios.get("https://zhkr.duckdns.org:5005/api/hodowle");
         const data = res.data;
 
         const geocoded = await Promise.all(
