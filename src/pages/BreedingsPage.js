@@ -5,9 +5,11 @@ import BreedingMap from "../components/breedings/BreedingMap";
 import AllBreadingSection from "../components/breedings/AllBreadingsSection";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import useScrollReveal from "../hooks/useScrollReveal";
 
 function BreedingsPage() {
   const location = useLocation();
+  useScrollReveal(".breedings-heading", "slide-in-left");
 
   useEffect(() => {
     if (location.state?.scrollToId) {
@@ -60,7 +62,9 @@ function BreedingsPage() {
         id="register-your-breeding"
         className="register-your-breeding dark-section"
       >
-        <h2 className="with-line register-heading">Chcesz do nas dołączyć?</h2>
+        <h2 className="with-line register-heading breedings-heading">
+          Chcesz do nas dołączyć?
+        </h2>
       </section>
     </main>
   );
