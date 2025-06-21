@@ -13,9 +13,17 @@
             line-height: 3rem;
         }
     }
+
+    .copyright {
+        font-size: 0.5rem;
+        a {
+            text-decoration: none;
+            color: $main-color;
+        }
+    }
 }
-.all-breadings {
-    .all-breadings-h {
+.register-your-breeding {
+    .register-heading {
         font-size: 2.7vw;
     }
 }
