@@ -1,6 +1,6 @@
 import React from "react";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
-import logoInverted from "../assets/logo.jpg";
+import logoInverted from "../assets/logo.png";
 
 function Footer() {
   return (
