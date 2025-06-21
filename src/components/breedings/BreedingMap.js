@@ -112,7 +112,7 @@ function BreedingMap() {
       <MapContainer
         center={center}
         zoom={zoom}
-        scrollWheelZoom={false}
+        scrollWheelZoom={true}
         className={`map-container ${loading ? "loading" : ""}`}
       >
         <TileLayer
