@@ -21,7 +21,7 @@ function BreedingTile({ name, number, image, city, province, owner, breeds, phon
             <p><em>Właściciel:</em> {owner}</p>
             <p><em>Numer hodowli:</em> {number}</p>
             <p><em>Rasy:</em> {breeds}</p>
-            <p><em>Miasto:</em> {city}</p>
+            <p><em>Miejscowość:</em> {city}</p>
             <p><em>Województwo:</em> {province}</p>
         </div>
 
