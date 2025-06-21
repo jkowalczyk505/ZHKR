@@ -5,15 +5,15 @@ import bannerImage from "../assets/files-banner.jpg"; // dowolny obrazek tła
 const files = [
   {
     name: "Regulamin ZHKR.pdf",
-    url: "/uploads/files/regulamin.pdf",
+    url: "/ZHKR/uploads/files/regulamin.pdf",           //tylko /ZHKR dla githuba, normalnie bez
   },
   {
     name: "Wniosek o rejestrację hodowli.docx",
-    url: "/uploads/files/wniosek.docx",
+    url: "/ZHKR/uploads/files/wniosek.docx",
   },
   {
     name: "Logo ZHKR (PNG)",
-    url: "/uploads/files/logo.png",
+    url: "/ZHKR/uploads/files/logo.png",
   },
 ];
 
