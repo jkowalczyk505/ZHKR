@@ -28,7 +28,7 @@ function BreedingTile({
     <div className="breeding-tile">
       <div className="breeding-tile-image">
         {image ? (
-          <img src={`${backendUrl}/${image}`} alt={name} />
+          <img src={`${backendUrl}${image}`} alt={name} />
         ) : (
           <div className="breeding-tile-placeholder">
             <IoImageOutline className="placeholder-icon" />

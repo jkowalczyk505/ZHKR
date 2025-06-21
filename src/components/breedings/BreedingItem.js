@@ -28,7 +28,7 @@ function BreedingItem({
     <div className="breeding-item">
       <div className="breeding-image">
         {image ? (
-          <img src={`${backendUrl}/${image}`} alt={name} />
+          <img src={`${backendUrl}${image}`} alt={name} />
         ) : (
           <div className="breeding-placeholder">
             <IoImageOutline className="placeholder-icon" />
