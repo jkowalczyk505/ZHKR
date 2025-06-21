@@ -16,7 +16,7 @@ function NewsSection() {
     const fetchNews = async () => {
       try {
         const res = await axios.get(`${API_URL}/api/posts`, {
-          withCredentials: true, // ⬅️ TO DODAJ
+          withCredentials: true,
         });
         const sorted = res.data.sort(
           (a, b) => new Date(b.data_utworzenia) - new Date(a.data_utworzenia)
