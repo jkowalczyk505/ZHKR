@@ -5,10 +5,17 @@ import NewsSection from "../components/news/NewsSection";
 import BreedingCarousel from "../components/breedings/BreedingCarousel";
 import { FaClipboardList, FaBookOpen } from "react-icons/fa";
 import useScrollReveal from "../hooks/useScrollReveal";
+import { useNavigate } from "react-router-dom";
 
 function HomePage() {
   useScrollReveal(".register-box", "slide-in-right");
   useScrollReveal(".knowledge-box", "slide-in-left");
+
+  const navigate = useNavigate();
+
+  const scrollToRegister = () => {
+    navigate("/hodowle", { state: { scrollToId: "register-your-breeding" } });
+  };
 
   return (
     <main className="page">
@@ -51,7 +58,7 @@ function HomePage() {
             <p>
               Sprawdź jak krok po kroku zarejestrować hodowlę w naszym związku.
             </p>
-            <Button variant="primary" to="/jak-zarejestrowac-hodowle">
+            <Button variant="primary" onClick={scrollToRegister}>
               Zobacz szczegóły
             </Button>
           </div>

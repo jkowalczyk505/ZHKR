@@ -7,6 +7,7 @@
   letter-spacing: 0.05rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  border: none;
 
   &.primary {
     background-color: $dark-color;
