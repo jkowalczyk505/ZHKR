@@ -1,7 +1,8 @@
 import HomePage from "./pages/HomePage";
 import RequireAuth from "./components/RequireAuth";
 import LoginPage from "./pages/LoginPage";
-import AdminPage from "./pages/AdminPage";
+import AdminPage from "./pages/admin/AdminPage";
+import AdminBreedingPage from "./pages/admin/AdminBreedingPage";
 import NotFound from "./pages/NotFound";
 import FilesPage from "./pages/FilesPage";
 import ContactPage from "./pages/ContactPage";
@@ -22,6 +23,14 @@ const routes = [
     element: (
       <RequireAuth>
         <AdminPage />
+      </RequireAuth>
+    ),
+  },
+  {
+    path: "/admin/hodowle",
+    element: (
+      <RequireAuth>
+        <AdminBreedingPage />
       </RequireAuth>
     ),
   },

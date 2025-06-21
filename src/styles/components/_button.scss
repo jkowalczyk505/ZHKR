@@ -19,12 +19,32 @@
     }
   }
 
+  &.secondary {
+    background-color: $secondary-color;
+    color: $light-color;
+
+    &:hover {
+      background-color: $light-color;
+      color: $dark-color;
+    }
+  }
+
   &.outline {
     background-color: $main-color;
     color: $dark-color;
 
     &:hover {
       background-color: $secondary-color-darken;
+      color: $light-color;
+    }
+  }
+
+  &.danger {
+    background-color: $light-color;
+    color: $dark-color;
+
+    &:hover {
+      background-color: red;
       color: $light-color;
     }
   }

@@ -1,5 +1,15 @@
 .admin-page {
 
+    padding: 6rem;
+
+    .with-line {
+        color: $secondary-color;
+    }
+
+    .with-line::after {
+        background-color: $secondary-color;
+    }
+
     .admin-description {
         margin: 4rem 0;
         font-size: 1.4rem;
