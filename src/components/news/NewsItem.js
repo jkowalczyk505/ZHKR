@@ -9,7 +9,7 @@ function NewsItem({ title, description, date, image, slug }) {
   return (
     <div className="news-item">
       {image ? (
-        <img src={`${backendUrl}/${image}`} alt={`Miniatura do: ${title}`} />
+        <img src={`${backendUrl}${image}`} alt={`Miniatura do: ${title}`} />
       ) : (
         <div className="news-placeholder">
           <IoNewspaperOutline className="placeholder-icon" />
