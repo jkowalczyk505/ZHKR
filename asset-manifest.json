@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ZHKR/static/css/main.a15b1c34.css",
-    "main.js": "/ZHKR/static/js/main.f063e82e.js",
+    "main.js": "/ZHKR/static/js/main.f022671f.js",
     "static/media/marker-icon.png": "/ZHKR/static/media/marker-icon.d2392e07b502fc17912e.png",
     "static/media/pig-hero.png": "/ZHKR/static/media/pig-hero.b635a26b40e1875cfbca.png",
     "static/media/not-found.png": "/ZHKR/static/media/not-found.7d2bde31ac96cbc963d7.png",
@@ -18,10 +18,10 @@
     "static/media/slick.ttf": "/ZHKR/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/ZHKR/static/media/slick.295183786cd8a1389865.woff",
     "main.a15b1c34.css.map": "/ZHKR/static/css/main.a15b1c34.css.map",
-    "main.f063e82e.js.map": "/ZHKR/static/js/main.f063e82e.js.map"
+    "main.f022671f.js.map": "/ZHKR/static/js/main.f022671f.js.map"
   },
   "entrypoints": [
     "static/css/main.a15b1c34.css",
-    "static/js/main.f063e82e.js"
+    "static/js/main.f022671f.js"
   ]
 }
