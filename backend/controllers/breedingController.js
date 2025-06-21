@@ -51,18 +51,25 @@ exports.update = async (req, res) => {
     const existing = rows[0];
     const data = req.body;
 
-    // Obsługa nowego zdjęcia
+    // 1. Jeśli przesłano nowe zdjęcie – usuń stare, zapisz nowe
     if (req.file) {
-      // usuń stare zdjęcie z dysku (jeśli istnieje)
       if (existing.zdjecie) {
         const oldPath = path.join(__dirname, "..", "public", existing.zdjecie);
         await fs.remove(oldPath);
       }
-
-      // ustaw nową ścieżkę zdjęcia
       data.zdjecie = `/uploads/breedings/${req.file.filename}`;
     }
 
+    // 2. Jeśli użytkownik chce usunąć zdjęcie (bez nowego) – usuń stare
+    if (!req.file && data.zdjecie === null) {
+      if (existing.zdjecie) {
+        const oldPath = path.join(__dirname, "..", "public", existing.zdjecie);
+        await fs.remove(oldPath);
+      }
+      data.zdjecie = null;
+    }
+
+    // 3. Aktualizacja danych w bazie
     const [result] = await Breeding.update(numer, data);
     res.json({ message: "Updated" });
   } catch (err) {
