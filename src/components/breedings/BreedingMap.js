@@ -82,6 +82,8 @@ function BreedingMap() {
         );
 
         setMarkers(geocoded.filter(Boolean));
+        setTimeout(() => setLoading(false), 0);
+        
       } catch (err) {
         console.error("Błąd podczas pobierania lub geokodowania:", err);
       } finally {

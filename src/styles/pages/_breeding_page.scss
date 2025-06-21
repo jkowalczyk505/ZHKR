@@ -1,7 +1,7 @@
 .map {
     .map-tile {
         display: flex;
-        background-color: $light-color;
+        background-color: $secondary-color-darken;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         p {
             width: 40%;
@@ -11,5 +11,10 @@
             align-content: center;
             line-height: 3rem;
         }
+    }
+}
+.all-breadings {
+    .all-breadings-h {
+        font-size: 2.7vw;
     }
 }
