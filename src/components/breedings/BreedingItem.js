@@ -22,11 +22,13 @@ function BreedingItem({
   www,
   admin, // <- nowy props
 }) {
+  const backendUrl = process.env.REACT_APP_API_URL;
+
   return (
     <div className="breeding-item">
       <div className="breeding-image">
         {image ? (
-          <img src={image} alt={name} />
+          <img src={`${backendUrl}/${image}`} alt={name} />
         ) : (
           <div className="breeding-placeholder">
             <IoImageOutline className="placeholder-icon" />
