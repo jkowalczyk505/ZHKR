@@ -1,0 +1,108 @@
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import BreedingItem from "../../components/breedings/BreedingItem";
+import Button from "../../components/Button";
+import { FaHome } from "react-icons/fa";
+
+const API_URL = process.env.REACT_APP_API_URL;
+
+function AdminBreedingPage() {
+  const navigate = useNavigate();
+  const [breedings, setBreedings] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${API_URL}/api/hodowle`);
+        const data = await response.json();
+        const sorted = data.sort((a, b) =>
+          a.nazwa.localeCompare(b.nazwa, "pl", { sensitivity: "base" })
+        );
+        setBreedings(sorted);
+      } catch (error) {
+        console.error("Błąd podczas pobierania hodowli:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleAdd = () => {
+    navigate("/admin/hodowle/nowa");
+  };
+
+  const handleEdit = (numer) => {
+    navigate(`/admin/hodowle/edytuj/${numer}`);
+  };
+
+  const handleDelete = async (numer) => {
+    if (!window.confirm("Czy na pewno chcesz usunąć tę hodowlę?")) return;
+
+    try {
+      const response = await fetch(`${API_URL}/api/hodowle/${numer}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        setBreedings((prev) => prev.filter((b) => b.numer !== numer));
+      } else {
+        console.error("Nie udało się usunąć hodowli");
+      }
+    } catch (error) {
+      console.error("Błąd przy usuwaniu:", error);
+    }
+  };
+
+  return (
+    <main className="page admin-breeding-page">
+      <h1>Zarządzanie hodowlami</h1>
+
+      <div className="breeding-list">
+        {breedings.map((breeding) => (
+          <div key={breeding.numer} className="breeding-item-wrapper admin">
+            <BreedingItem
+              name={breeding.nazwa}
+              image={breeding.zdjecie}
+              city={breeding.miejscowosc}
+              province={breeding.wojewodztwo}
+              owner={breeding.wlasciciel}
+              breeds={breeding.rasy}
+              phone={breeding.telefon}
+              email={breeding.email}
+              fb={breeding.fb}
+              ig={breeding.ig}
+              www={breeding.www}
+            />
+            <div className="admin-controls">
+              <Button
+                variant="primary"
+                onClick={() => handleEdit(breeding.numer)}
+              >
+                Edytuj
+              </Button>
+              <Button
+                variant="danger"
+                onClick={() => handleDelete(breeding.numer)}
+              >
+                Usuń
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="add-breeding">
+        <div className="left">
+          <FaHome className="home-icon" />
+        </div>
+        <div className="right">
+          <Button variant="secondary" onClick={handleAdd}>
+            Dodaj nową hodowlę
+          </Button>
+        </div>
+      </div>
+    </main>
+  );
+}
+
+export default AdminBreedingPage;

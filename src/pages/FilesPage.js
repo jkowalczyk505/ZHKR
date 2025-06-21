@@ -12,8 +12,8 @@ const files = [
     url: "/uploads/files/wniosek.docx",
   },
   {
-    name: "Logo ZHKR (JPG)",
-    url: "/uploads/files/logo.jpg",
+    name: "Logo ZHKR (PNG)",
+    url: "/uploads/files/logo.png",
   },
 ];
 

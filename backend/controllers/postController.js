@@ -7,26 +7,28 @@ exports.getAll = async (req, res) => {
   try {
     const [rows] = await Post.findAll();
 
-    const postsWithThumbnails = await Promise.all(rows.map(async (post) => {
-      let miniatura = null;
+    const postsWithThumbnails = await Promise.all(
+      rows.map(async (post) => {
+        let miniatura = null;
 
-      if (post.zdjecia) {
-        const dirPath = path.join(__dirname, "..", "public", post.zdjecia);
-        try {
-          const files = await fs.promises.readdir(dirPath);
-          if (files.length > 0) {
-            miniatura = path.posix.join(post.zdjecia, files[0]); // np. "/uploads/posts/2/abc123.jpg"
+        if (post.zdjecia) {
+          const dirPath = path.join(__dirname, "..", "public", post.zdjecia);
+          try {
+            const files = await fs.promises.readdir(dirPath);
+            if (files.length > 0) {
+              miniatura = path.posix.join(post.zdjecia, files[0]); // np. "/uploads/posts/2/abc123.jpg"
+            }
+          } catch (err) {
+            console.warn(`Brak folderu lub plików dla postu ID ${post.id}`);
           }
-        } catch (err) {
-          console.warn(`Brak folderu lub plików dla postu ID ${post.id}`);
         }
-      }
 
-      return {
-        ...post,
-        miniatura,
-      };
-    }));
+        return {
+          ...post,
+          miniatura,
+        };
+      })
+    );
 
     res.json(postsWithThumbnails);
   } catch (e) {
@@ -34,7 +36,6 @@ exports.getAll = async (req, res) => {
     res.status(500).json({ message: "Błąd serwera" });
   }
 };
-
 
 exports.getOne = async (req, res) => {
   const { idOrSlug } = req.params;
@@ -78,9 +79,28 @@ exports.update = async (req, res) => {
   }
 
   try {
-    const [result] = await Post.update(id, fields);
-    if (result.affectedRows === 0)
+    // Sprawdź, czy post istnieje
+    const [rows] = await Post.findOne(id);
+    if (!rows.length)
       return res.status(404).json({ message: "Nie znaleziono wpisu" });
+
+    const post = rows[0];
+
+    // Jeśli użytkownik chce usunąć wszystkie zdjęcia (zdjecia === null)
+    if (fields.zdjecia === null && post.zdjecia) {
+      const folderPath = path.join(__dirname, "..", "public", post.zdjecia);
+      if (fs.existsSync(folderPath)) {
+        await fs.promises.rm(folderPath, { recursive: true, force: true });
+      }
+    }
+
+    // Przejdź do aktualizacji danych w bazie
+    const [result] = await Post.update(id, fields);
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: "Nie znaleziono wpisu" });
+    }
+
     res.json({ message: "Wpis zaktualizowany" });
   } catch (e) {
     console.error(e);
@@ -154,5 +174,32 @@ exports.getImages = async (req, res) => {
   } catch (e) {
     console.error(e);
     res.status(500).json({ message: "Błąd serwera" });
+  }
+};
+
+// DELETE /api/posts/:id/image?name=abc.jpg
+exports.deleteImage = async (req, res) => {
+  const { id } = req.params;
+  const { name } = req.query;
+
+  if (!name) return res.status(400).json({ message: "Brak nazwy pliku" });
+
+  try {
+    const [rows] = await Post.findOne(id);
+    if (!rows.length)
+      return res.status(404).json({ message: "Post nie istnieje" });
+
+    const folder = rows[0].zdjecia; // np. /uploads/posts/2
+    const filePath = path.join(__dirname, "..", "public", folder, name);
+
+    if (fs.existsSync(filePath)) {
+      await fs.promises.unlink(filePath);
+      res.json({ message: "Zdjęcie usunięte" });
+    } else {
+      res.status(404).json({ message: "Plik nie istnieje" });
+    }
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ message: "Błąd serwera przy usuwaniu zdjęcia" });
   }
 };
