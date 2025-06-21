@@ -1,5 +1,5 @@
 {
-  "proxy": "http://95.215.232.175",
+  "proxy": "http://95.215.232.175:5005",
   "name": "zhkr",
   "version": "0.1.0",
   "homepage": "https://jkowalczyk505.github.io/ZHKR",
