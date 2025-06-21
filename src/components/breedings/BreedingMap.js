@@ -12,7 +12,7 @@ const CustomMarker = new L.Icon({
   iconUrl: CustomMarkerIcon,
   iconSize: [40, 40], // dostosuj do rozmiaru grafiki
   iconAnchor: [15, 40], // punkt kotwiczenia na dole ikonki
-  popupAnchor: [5, -40] // gdzie pojawi się popup względem ikonki
+  popupAnchor: [5, -40], // gdzie pojawi się popup względem ikonki
 });
 
 function ResetViewButton({ center, zoom }) {
@@ -25,7 +25,7 @@ function ResetViewButton({ center, zoom }) {
 }
 
 function BreedingMap() {
-    useEffect(() => {
+  useEffect(() => {
     const zoomInBtn = document.querySelector(".leaflet-control-zoom-in");
     const zoomOutBtn = document.querySelector(".leaflet-control-zoom-out");
 
@@ -34,7 +34,12 @@ function BreedingMap() {
   }, []);
   return (
     <div className="map-wrapper">
-      <MapContainer center={center} zoom={zoom} scrollWheelZoom={true} className="map-container">
+      <MapContainer
+        center={center}
+        zoom={zoom}
+        scrollWheelZoom={false}
+        className="map-container"
+      >
         <TileLayer
           attribution='&copy; <a href="https://carto.com/">Carto</a>'
           url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
