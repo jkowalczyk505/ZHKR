@@ -1,14 +1,9 @@
 .spinner-wrapper {
-    position: fixed; // Unieruchomienie względem całego widoku
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.6); // lekki półprzezroczysty overlay
-    z-index: 1000; // nad wszystkim
+    min-height: 150px;
+    /* wystarczająco miejsca na spinnera w sekcji */
 }
 
 .spinner {

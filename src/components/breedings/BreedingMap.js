@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
@@ -11,9 +11,9 @@ const zoom = 6;
 
 const CustomMarker = new L.Icon({
   iconUrl: CustomMarkerIcon,
-  iconSize: [40, 40], // dostosuj do rozmiaru grafiki
-  iconAnchor: [15, 40], // punkt kotwiczenia na dole ikonki
-  popupAnchor: [5, -40], // gdzie pojawi się popup względem ikonki
+  iconSize: [40, 40],
+  iconAnchor: [15, 40],
+  popupAnchor: [5, -40],
 });
 
 function ResetViewButton({ center, zoom }) {
@@ -46,58 +46,62 @@ function FlyToMarker({ position, icon, children }) {
 function BreedingMap() {
   const [markers, setMarkers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const zoomInBtn = document.querySelector(".leaflet-control-zoom-in");
-    const zoomOutBtn = document.querySelector(".leaflet-control-zoom-out");
+  const fetchData = async () => {
+    setLoading(true);
+    setError(null);
 
-    if (zoomInBtn) zoomInBtn.removeAttribute("title");
-    if (zoomOutBtn) zoomOutBtn.removeAttribute("title");
-  }, []);
+    try {
+      const res = await axios.get("https://zhkr.duckdns.org:5005/api/hodowle");
+      const data = res.data;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get("https://zhkr.duckdns.org:5005/api/hodowle");
-        const data = res.data;
-
-        const geocoded = await Promise.all(
-          data.map(async (item) => {
-            const address = `${item.miejscowosc}, ${item.gmina}, ${item.wojewodztwo}`;
-            try {
-              const r = await fetch(
-                `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
-                  address
-                )}`,
-                {
-                  headers: {
-                    "User-Agent": "ZHKR-website/1.0 (+https://kawierasowe.pl)",
-                  },
-                }
-              );
-              const geo = await r.json();
-              if (geo.length) {
-                return {
-                  ...item,
-                  coords: [parseFloat(geo[0].lat), parseFloat(geo[0].lon)],
-                };
+      const geocoded = await Promise.all(
+        data.map(async (item) => {
+          const address = `${item.miejscowosc}, ${item.gmina}, ${item.wojewodztwo}`;
+          try {
+            const r = await fetch(
+              `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+                address
+              )}`,
+              {
+                headers: {
+                  "User-Agent": "ZHKR-website/1.0 (+https://kawierasowe.pl)",
+                },
               }
-            } catch (e) {
-              console.warn("⛔ geocoder error:", e);
+            );
+            const geo = await r.json();
+            if (geo.length) {
+              return {
+                ...item,
+                coords: [parseFloat(geo[0].lat), parseFloat(geo[0].lon)],
+              };
             }
-            return null; // jeśli nie znaleziono współrzędnych
-          })
-        );
+          } catch (e) {
+            console.warn("⛔ geocoder error:", e);
+          }
+          return null;
+        })
+      );
 
-        setMarkers(geocoded.filter(Boolean));
-        setTimeout(() => setLoading(false), 0);
-      } catch (err) {
-        console.error("Błąd podczas pobierania lub geokodowania:", err);
-      } finally {
-        setLoading(false);
+      const validMarkers = geocoded.filter(Boolean);
+
+      if (validMarkers.length === 0) {
+        throw new Error("Nie udało się ustalić lokalizacji hodowli.");
       }
-    };
 
+      setMarkers(validMarkers);
+    } catch (err) {
+      console.error("❌ Błąd pobierania lub geokodowania:", err);
+      setError(
+        "Nie udało się załadować mapy hodowli. Spróbuj ponownie później."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -109,19 +113,27 @@ function BreedingMap() {
           Ładowanie mapy...
         </div>
       )}
-      <MapContainer
-        center={center}
-        zoom={zoom}
-        scrollWheelZoom={true}
-        className={`map-container ${loading ? "loading" : ""}`}
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://carto.com/">Carto</a>'
-          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-          subdomains="abcd"
-        />
 
-        {!loading && (
+      {error && !loading && (
+        <div className="map-error">
+          <p>{error}</p>
+          <button onClick={fetchData}>Spróbuj ponownie</button>
+        </div>
+      )}
+
+      {!loading && !error && (
+        <MapContainer
+          center={center}
+          zoom={zoom}
+          scrollWheelZoom={true}
+          className="map-container"
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://carto.com/">Carto</a>'
+            url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+            subdomains="abcd"
+          />
+
           <MarkerClusterGroup
             chunkedLoading
             showCoverageOnHover={false}
@@ -149,10 +161,10 @@ function BreedingMap() {
               </FlyToMarker>
             ))}
           </MarkerClusterGroup>
-        )}
 
-        <ResetViewButton center={center} zoom={zoom} />
-      </MapContainer>
+          <ResetViewButton center={center} zoom={zoom} />
+        </MapContainer>
+      )}
     </div>
   );
 }
