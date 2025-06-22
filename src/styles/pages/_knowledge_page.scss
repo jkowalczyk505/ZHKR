@@ -1,0 +1,23 @@
+.knowledge-page {
+    .characteristic {
+        .characteristic-title {
+            font-size: 2.7vw;
+            margin-bottom: 3rem;
+        }
+        .container-with-two-sides {
+            display: flex;
+            gap: 10%;
+            img {
+                width: 40%;
+                height: fit-content;
+                align-self: center;
+            }
+            .subjects-right {
+                width: auto;
+            }
+        }
+        .subjects-below {
+
+        }
+    }
+}
