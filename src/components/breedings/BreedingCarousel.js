@@ -5,7 +5,8 @@ import useScrollReveal from "../../hooks/useScrollReveal";
 import Slider from "react-slick";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Button from "../Button";
-
+import Spinner from "../Spinner";
+import ErrorMessage from "../ErrorMessage";
 import ModalContact from "./ModalContact";
 
 export const PrevArrow = ({ className, onClick }) => (
@@ -24,6 +25,8 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 function BreedingCarousel() {
   const [breedings, setBreedings] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [selectedBreeding, setSelectedBreeding] = useState(null);
 
   useScrollReveal(".breeding-heading", "slide-in-left");
@@ -32,9 +35,16 @@ function BreedingCarousel() {
     const fetchBreedings = async () => {
       try {
         const res = await axios.get(`${API_URL}/api/hodowle`);
-        setBreedings(res.data);
+        const sorted = res.data.sort((a, b) =>
+          a.nazwa.localeCompare(b.nazwa, "pl", { sensitivity: "base" })
+        );
+        setBreedings(sorted);
+        setError(null);
       } catch (err) {
         console.error("Błąd podczas pobierania hodowli:", err);
+        setError("Nie udało się załadować hodowli. Spróbuj ponownie później.");
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -67,36 +77,50 @@ function BreedingCarousel() {
   return (
     <section className="breedings-container dark-section">
       <h2 className="with-line breeding-heading">Nasze hodowle</h2>
-      <Slider {...settings} className="breeding-carousel">
-        {breedings.map((b) => (
-          <BreedingItem
-            key={b.numer}
-            name={b.nazwa}
-            image={b.zdjecie}
-            city={b.miejscowosc}
-            province={b.wojewodztwo}
-            owner={b.wlasciciel}
-            breeds={b.rasy}
-            phone={b.telefon}
-            email={b.email}
-            fb={b.fb}
-            ig={b.ig}
-            www={b.www}
-            onContactClick={() =>
-              setSelectedBreeding({
-                phone: b.telefon,
-                email: b.email,
-                name: b.nazwa,
-              })
-            }
-          />
-        ))}
-      </Slider>
-      <div className="btn-all-breadings">
-        <Button variant="primary" to="/hodowle">
-          Pokaż wszystkie
-        </Button>
-      </div>
+
+      {isLoading ? (
+        <Spinner />
+      ) : error ? (
+        <ErrorMessage
+          message={error}
+          onRetry={() => window.location.reload()}
+        />
+      ) : (
+        <>
+          <Slider {...settings} className="breeding-carousel">
+            {breedings.map((b) => (
+              <BreedingItem
+                key={b.numer}
+                name={b.nazwa}
+                image={b.zdjecie}
+                city={b.miejscowosc}
+                province={b.wojewodztwo}
+                owner={b.wlasciciel}
+                breeds={b.rasy}
+                phone={b.telefon}
+                email={b.email}
+                fb={b.fb}
+                ig={b.ig}
+                www={b.www}
+                onContactClick={() =>
+                  setSelectedBreeding({
+                    phone: b.telefon,
+                    email: b.email,
+                    name: b.nazwa,
+                  })
+                }
+              />
+            ))}
+          </Slider>
+
+          <div className="btn-all-breadings">
+            <Button variant="primary" to="/hodowle">
+              Pokaż wszystkie
+            </Button>
+          </div>
+        </>
+      )}
+
       {selectedBreeding && (
         <ModalContact
           isOpen={true}
