@@ -2,22 +2,80 @@
     .characteristic {
         .characteristic-title {
             font-size: 2.7vw;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
         .container-with-two-sides {
             display: flex;
-            gap: 10%;
+            gap: 8%;
+            align-items: center;
+            margin-bottom: 3rem;
             img {
-                width: 40%;
+                width: 42%;
                 height: fit-content;
                 align-self: center;
             }
             .subjects-right {
-                width: auto;
+                flex: 1;
+                .subject-right {
+                    margin-bottom: 1rem;
+                    .subject-title {
+                        font-size: 1.2rem;
+                        margin-bottom: 0.3rem;
+                    }
+                    .subject-content {
+                        line-height: 1.3;
+                        text-align: justify;
+                        font-size: 1rem;
+                    }
+                }
             }
         }
         .subjects-below {
+            .subject-below {
+                margin-bottom: 1rem;
+                .subject-title {
+                    font-size: 1.2rem;
+                    margin-bottom: 0.3rem;
+                }
+                .subject-content {
+                    line-height: 1.3;
+                    text-align: justify;
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+    .guides {
+        .guides-title {
+            font-size: 2.7vw;
+            margin-bottom: 4rem;
+        }
+        .tiles-row {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            
 
+            &--two {
+                justify-content: center;
+                margin-bottom: 2rem;
+            }
+
+            &--three {
+                justify-content: center;
+                margin-bottom: 3rem;
+            }
+
+            .admin-tile {
+                flex: 1 1 220px;
+                max-width: 300px;
+                font-size: 1.2rem;
+                padding: 3rem 2rem;
+            }
+        }
+        p {
+            font-size: 1.7rem;
+            justify-self: center;
         }
     }
 }
