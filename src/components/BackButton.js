@@ -6,7 +6,7 @@ const BackButton = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(-1); // cofa o 1 stronę
+    navigate(-1);
   };
 
   return (
