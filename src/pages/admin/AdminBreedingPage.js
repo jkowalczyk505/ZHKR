@@ -4,6 +4,7 @@ import BreedingItem from "../../components/breedings/BreedingItem";
 import Button from "../../components/Button";
 import { FaHome } from "react-icons/fa";
 import Spinner from "../../components/Spinner";
+import BackButton from "../../components/BackButton";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -59,6 +60,7 @@ function AdminBreedingPage() {
 
   return (
     <main className="page admin-breeding-page">
+      <BackButton />
       <h1>Zarządzanie hodowlami</h1>
 
       <div className="breeding-list">
