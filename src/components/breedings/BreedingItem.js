@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   FaPhoneAlt,
   FaEnvelope,
@@ -20,7 +20,8 @@ function BreedingItem({
   fb,
   ig,
   www,
-  admin, // <- nowy props
+  admin,
+  onContactClick 
 }) {
   const backendUrl = process.env.REACT_APP_API_URL;
 
@@ -57,14 +58,33 @@ function BreedingItem({
           </p>
         </div>
         <div className="breeding-icons">
-          {phone && <FaPhoneAlt />}
-          {email && <FaEnvelope />}
-          {fb && <FaFacebookF />}
-          {ig && <FaInstagram />}
-          {www && <TbWorldWww />}
+          {phone && (
+            <a href="#" onClick={(e) => { e.preventDefault(); onContactClick(); }}>
+              <FaPhoneAlt />
+            </a>
+          )}
+          {email && (
+            <a href="#" onClick={(e) => { e.preventDefault(); onContactClick(); }}>
+              <FaEnvelope />
+            </a>
+          )}
+          {fb && (
+            <a href={fb} target="_blank" rel="noopener noreferrer">
+              <FaFacebookF />
+            </a>
+          )}
+          {ig && (
+            <a href={ig} target="_blank" rel="noopener noreferrer">
+              <FaInstagram />
+            </a>
+          )}
+          {www && (
+            <a href={www} target="_blank" rel="noopener noreferrer">
+              <TbWorldWww />
+            </a>
+          )}
         </div>
       </div>
-
       {admin && (
         <div className="breeding-actions">
           <button className="btn edit">Edytuj</button>
