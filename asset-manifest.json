@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.css": "/ZHKR/static/css/main.7cb25a8b.css",
-    "main.js": "/ZHKR/static/js/main.3fb911a3.js",
+    "main.css": "/ZHKR/static/css/main.67e67935.css",
+    "main.js": "/ZHKR/static/js/main.31df9679.js",
+    "static/media/files-banner.jpg": "/ZHKR/static/media/files-banner.109c339c5d0c84326689.jpg",
+    "static/media/contact-banner.jpg": "/ZHKR/static/media/contact-banner.dc8a11a1c092a91c4fa3.jpg",
+    "static/media/knowledge-banner.jpg": "/ZHKR/static/media/knowledge-banner.74a4eea71ee89c107d99.jpg",
     "static/media/marker-icon.png": "/ZHKR/static/media/marker-icon.d2392e07b502fc17912e.png",
     "static/media/texel.png": "/ZHKR/static/media/texel.4ac2ae159dc1af490f13.png",
     "static/media/pig-hero.png": "/ZHKR/static/media/pig-hero.b635a26b40e1875cfbca.png",
     "static/media/not-found.png": "/ZHKR/static/media/not-found.7d2bde31ac96cbc963d7.png",
-    "static/media/contact-banner.jpg": "/ZHKR/static/media/contact-banner.8300bf972267e78a77b1.jpg",
+    "static/media/breedings-banner.jpg": "/ZHKR/static/media/breedings-banner.a787bc7c4bffa2a542ea.jpg",
+    "static/media/about-us-banner.jpg": "/ZHKR/static/media/about-us-banner.850499f06382367a3ee7.jpg",
     "static/media/logo.png": "/ZHKR/static/media/logo.c37417f6b8925922af05.png",
-    "static/media/breedings-banner.jpg": "/ZHKR/static/media/breedings-banner.466facfd5796b2af5478.jpg",
-    "static/media/files-banner.jpg": "/ZHKR/static/media/files-banner.ac565451092e96e9e249.jpg",
-    "static/media/knowledge-banner.jpg": "/ZHKR/static/media/knowledge-banner.df3206c20515fd76cc07.jpg",
-    "static/media/about-us-banner.jpg": "/ZHKR/static/media/about-us-banner.9f66382c1f386159ac09.jpg",
     "static/media/greenPiggy.png": "/ZHKR/static/media/greenPiggy.e1459f5d8fcaad9d22dd.png",
     "index.html": "/ZHKR/index.html",
     "static/media/slick.svg": "/ZHKR/static/media/slick.2630a3e3eab21c607e21.svg",
     "static/media/slick.eot": "/ZHKR/static/media/slick.a4e97f5a2a64f0ab1323.eot",
     "static/media/slick.ttf": "/ZHKR/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/ZHKR/static/media/slick.295183786cd8a1389865.woff",
-    "main.7cb25a8b.css.map": "/ZHKR/static/css/main.7cb25a8b.css.map",
-    "main.3fb911a3.js.map": "/ZHKR/static/js/main.3fb911a3.js.map"
+    "main.67e67935.css.map": "/ZHKR/static/css/main.67e67935.css.map",
+    "main.31df9679.js.map": "/ZHKR/static/js/main.31df9679.js.map"
   },
   "entrypoints": [
-    "static/css/main.7cb25a8b.css",
-    "static/js/main.3fb911a3.js"
+    "static/css/main.67e67935.css",
+    "static/js/main.31df9679.js"
   ]
 }
