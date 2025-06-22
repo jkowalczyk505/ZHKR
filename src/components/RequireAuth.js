@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
+import Spinner from "./Spinner";
 
 const RequireAuth = ({ children }) => {
   const [isAuth, setIsAuth] = useState(null); // null = loading
@@ -20,7 +21,14 @@ const RequireAuth = ({ children }) => {
     checkAuth();
   }, []);
 
-  if (loading) return <p>Ładowanie...</p>;
+  if (loading) {
+    return (
+      <main className="page">
+        <Spinner />
+      </main>
+    );
+  }
+
   if (!isAuth) return <Navigate to="/login" replace />;
 
   return children;
