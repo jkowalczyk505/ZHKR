@@ -3,12 +3,14 @@ import { useNavigate } from "react-router-dom";
 import BreedingItem from "../../components/breedings/BreedingItem";
 import Button from "../../components/Button";
 import { FaHome } from "react-icons/fa";
+import Spinner from "../../components/Spinner";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 function AdminBreedingPage() {
   const navigate = useNavigate();
   const [breedings, setBreedings] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); // <-- dodany loading
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,6 +23,8 @@ function AdminBreedingPage() {
         setBreedings(sorted);
       } catch (error) {
         console.error("Błąd podczas pobierania hodowli:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -58,49 +62,55 @@ function AdminBreedingPage() {
       <h1>Zarządzanie hodowlami</h1>
 
       <div className="breeding-list">
-        {breedings.map((breeding) => (
-          <div key={breeding.numer} className="breeding-item-wrapper admin">
-            <BreedingItem
-              name={breeding.nazwa}
-              image={breeding.zdjecie}
-              city={breeding.miejscowosc}
-              province={breeding.wojewodztwo}
-              owner={breeding.wlasciciel}
-              breeds={breeding.rasy}
-              phone={breeding.telefon}
-              email={breeding.email}
-              fb={breeding.fb}
-              ig={breeding.ig}
-              www={breeding.www}
-            />
-            <div className="admin-controls">
-              <Button
-                variant="primary"
-                onClick={() => handleEdit(breeding.numer)}
-              >
-                Edytuj
-              </Button>
-              <Button
-                variant="danger"
-                onClick={() => handleDelete(breeding.numer)}
-              >
-                Usuń
-              </Button>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          breedings.map((breeding) => (
+            <div key={breeding.numer} className="breeding-item-wrapper admin">
+              <BreedingItem
+                name={breeding.nazwa}
+                image={breeding.zdjecie}
+                city={breeding.miejscowosc}
+                province={breeding.wojewodztwo}
+                owner={breeding.wlasciciel}
+                breeds={breeding.rasy}
+                phone={breeding.telefon}
+                email={breeding.email}
+                fb={breeding.fb}
+                ig={breeding.ig}
+                www={breeding.www}
+              />
+              <div className="admin-controls">
+                <Button
+                  variant="primary"
+                  onClick={() => handleEdit(breeding.numer)}
+                >
+                  Edytuj
+                </Button>
+                <Button
+                  variant="danger"
+                  onClick={() => handleDelete(breeding.numer)}
+                >
+                  Usuń
+                </Button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
 
-      <div className="add-breeding">
-        <div className="left">
-          <FaHome className="home-icon" />
+      {!isLoading && (
+        <div className="add-breeding">
+          <div className="left">
+            <FaHome className="home-icon" />
+          </div>
+          <div className="right">
+            <Button variant="secondary" onClick={handleAdd}>
+              Dodaj nową hodowlę
+            </Button>
+          </div>
         </div>
-        <div className="right">
-          <Button variant="secondary" onClick={handleAdd}>
-            Dodaj nową hodowlę
-          </Button>
-        </div>
-      </div>
+      )}
     </main>
   );
 }
