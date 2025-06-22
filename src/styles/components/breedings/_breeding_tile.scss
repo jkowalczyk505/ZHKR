@@ -1,11 +1,11 @@
 .breeding-tile {
     display: flex;
     flex-direction: row;
-    align-items: stretch; // <- nowe
+    align-items: stretch;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.07);
     .breeding-tile-image {
-        flex: 0 0 45%; // zdjęcie zajmuje 40% szerokości
+        flex: 0 0 45%;
         max-width: 45%;
         height: 400px;
         img,

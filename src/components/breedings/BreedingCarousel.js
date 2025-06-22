@@ -6,6 +6,8 @@ import Slider from "react-slick";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Button from "../Button";
 
+import ModalContact from "./ModalContact";
+
 export const PrevArrow = ({ className, onClick }) => (
   <div className={`${className} custom-arrow prev`} onClick={onClick}>
     <FaChevronLeft />
@@ -22,6 +24,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 function BreedingCarousel() {
   const [breedings, setBreedings] = useState([]);
+  const [selectedBreeding, setSelectedBreeding] = useState(null);
 
   useScrollReveal(".breeding-heading", "slide-in-left");
 
@@ -79,6 +82,13 @@ function BreedingCarousel() {
             fb={b.fb}
             ig={b.ig}
             www={b.www}
+            onContactClick={() =>
+              setSelectedBreeding({
+                phone: b.telefon,
+                email: b.email,
+                name: b.nazwa,
+              })
+            }
           />
         ))}
       </Slider>
@@ -87,6 +97,15 @@ function BreedingCarousel() {
           Pokaż wszystkie
         </Button>
       </div>
+      {selectedBreeding && (
+        <ModalContact
+          isOpen={true}
+          onClose={() => setSelectedBreeding(null)}
+          phone={selectedBreeding.phone}
+          email={selectedBreeding.email}
+          name={selectedBreeding.name}
+        />
+      )}
     </section>
   );
 }
