@@ -1,0 +1,19 @@
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: none;
+    color: $dark-color;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.2s;
+
+    .back-icon {
+        font-size: 1.2rem;
+    }
+
+    &:hover {
+        color: $accent-color;
+    }
+}
