@@ -33,3 +33,29 @@
         }
     }
 }
+.light-tile {
+  background-color: $light-color;
+  color: $secondary-color;
+  border-radius: 0;
+
+  .icon {
+    color: $secondary-color;
+  }
+
+  h2 {
+    color: $secondary-color;
+  }
+
+  &:hover {
+    background-color: $main-color;
+    color: $secondary-color-darken;
+
+    .icon {
+      color: $secondary-color-darken;
+    }
+
+    h2 {
+      color: $secondary-color-darken;
+    }
+  }
+}
