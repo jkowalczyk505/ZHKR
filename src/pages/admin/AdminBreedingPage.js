@@ -6,6 +6,7 @@ import { FaHome } from "react-icons/fa";
 import Spinner from "../../components/Spinner";
 import CustomAlert from "../../components/CustomAlert";
 import BackButton from "../../components/BackButton";
+import ErrorMessage from "../../components/ErrorMessage";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -17,10 +18,15 @@ function AdminBreedingPage() {
   const [breedings, setBreedings] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const [error, setError] = useState(null);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(`${API_URL}/api/hodowle`);
+        if (!response.ok) {
+          throw new Error("Nie udało się pobrać danych z serwera.");
+        }
         const data = await response.json();
         const sorted = data.sort((a, b) =>
           a.nazwa.localeCompare(b.nazwa, "pl", { sensitivity: "base" })
@@ -28,6 +34,7 @@ function AdminBreedingPage() {
         setBreedings(sorted);
       } catch (error) {
         console.error("Błąd podczas pobierania hodowli:", error);
+        setError("Nie udało się pobrać danych. Sprawdź połączenie z serwerem.");
       } finally {
         setIsLoading(false);
       }
@@ -81,43 +88,52 @@ function AdminBreedingPage() {
       <BackButton />
       <h1>Zarządzanie hodowlami</h1>
 
-      <div className="breeding-list">
-        {isLoading ? (
-          <Spinner />
-        ) : (
-          breedings.map((breeding) => (
-            <div key={breeding.numer} className="breeding-item-wrapper admin">
-              <BreedingItem
-                name={breeding.nazwa}
-                image={breeding.zdjecie}
-                city={breeding.miejscowosc}
-                province={breeding.wojewodztwo}
-                owner={breeding.wlasciciel}
-                breeds={breeding.rasy}
-                phone={breeding.telefon}
-                email={breeding.email}
-                fb={breeding.fb}
-                ig={breeding.ig}
-                www={breeding.www}
-              />
-              <div className="admin-controls">
-                <Button
-                  variant="primary"
-                  onClick={() => handleEdit(breeding.numer)}
-                >
-                  Edytuj
-                </Button>
-                <Button
-                  variant="danger"
-                  onClick={() => handleDelete(breeding.numer)}
-                >
-                  Usuń
-                </Button>
+      {isLoading ? (
+        <Spinner />
+      ) : error ? (
+        <ErrorMessage
+          message={error}
+          onRetry={() => window.location.reload()}
+        />
+      ) : (
+        <div className="breeding-list">
+          {breedings.length === 0 ? (
+            <ErrorMessage message="Brak hodowli do wyświetlenia." />
+          ) : (
+            breedings.map((breeding) => (
+              <div key={breeding.numer} className="breeding-item-wrapper admin">
+                <BreedingItem
+                  name={breeding.nazwa}
+                  image={breeding.zdjecie}
+                  city={breeding.miejscowosc}
+                  province={breeding.wojewodztwo}
+                  owner={breeding.wlasciciel}
+                  breeds={breeding.rasy}
+                  phone={breeding.telefon}
+                  email={breeding.email}
+                  fb={breeding.fb}
+                  ig={breeding.ig}
+                  www={breeding.www}
+                />
+                <div className="admin-controls">
+                  <Button
+                    variant="primary"
+                    onClick={() => handleEdit(breeding.numer)}
+                  >
+                    Edytuj
+                  </Button>
+                  <Button
+                    variant="danger"
+                    onClick={() => handleDelete(breeding.numer)}
+                  >
+                    Usuń
+                  </Button>
+                </div>
               </div>
-            </div>
-          ))
-        )}
-      </div>
+            ))
+          )}
+        </div>
+      )}
 
       {!isLoading && (
         <div className="add-breeding">
