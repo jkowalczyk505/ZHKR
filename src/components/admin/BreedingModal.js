@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Button from "../Button";
 import { useDropzone } from "react-dropzone";
+import FloatingErrorAlert from "../FloatingErrorAlert";
+import Spinner from "../Spinner";
 
 function BreedingModal({ isOpen, onClose, onSave, initialData }) {
   const [formData, setFormData] = useState({
@@ -21,7 +23,8 @@ function BreedingModal({ isOpen, onClose, onSave, initialData }) {
   const [imageFile, setImageFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [removeImage, setRemoveImage] = useState(false); // 🔸 nowy stan
+  const [removeImage, setRemoveImage] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
 
   const requiredFields = [
     "nazwa",
@@ -102,15 +105,24 @@ function BreedingModal({ isOpen, onClose, onSave, initialData }) {
 
   const handleSubmit = async () => {
     try {
+      setIsSaving(true); // 🔸 start spinnera
+
       const payload = {
         ...formData,
         zdjecie: removeImage ? null : imageFile || initialData?.zdjecie,
-        usunZdjecie: removeImage, // 🔸 informacja dla backendu
+        usunZdjecie: removeImage,
       };
       await onSave(payload);
       setErrorMessage("");
     } catch (err) {
-      setErrorMessage(err.message || "Wystąpił błąd podczas zapisu.");
+      let message = err?.message || "Wystąpił błąd podczas zapisu.";
+      if (message === "Failed to fetch") {
+        message =
+          "Brak połączenia z serwerem. Sprawdź internet lub spróbuj później.";
+      }
+      setErrorMessage(message);
+    } finally {
+      setIsSaving(false); // 🔸 koniec spinnera
     }
   };
 
@@ -137,7 +149,7 @@ function BreedingModal({ isOpen, onClose, onSave, initialData }) {
         </button>
         <h2>{initialData ? "Edytuj hodowlę" : "Dodaj hodowlę"}</h2>
 
-        {errorMessage && <div className="floating-error">{errorMessage}</div>}
+        <FloatingErrorAlert message={errorMessage} />
 
         <form
           onSubmit={(e) => {
@@ -212,6 +224,11 @@ function BreedingModal({ isOpen, onClose, onSave, initialData }) {
             </Button>
           </div>
         </form>
+        {isSaving && (
+          <div className="spinner-overlay">
+            <Spinner />
+          </div>
+        )}
       </div>
     </div>
   );

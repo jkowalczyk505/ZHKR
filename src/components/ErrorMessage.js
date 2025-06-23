@@ -1,3 +1,5 @@
+// Error dla bledu wczytywania
+
 import React from "react";
 import { FaExclamationTriangle } from "react-icons/fa";
 import Button from "./Button";
