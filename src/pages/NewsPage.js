@@ -1,72 +1,81 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import BackButton from "../components/BackButton";
 import ImageGallery from "../components/news/Gallery";
 import Spinner from "../components/Spinner";
+import ErrorMessage from "../components/ErrorMessage";
 
 function NewsPage() {
-  const { slug }         = useParams();
-  const [news, setNews]   = useState(null);
-  const API               = process.env.REACT_APP_API_URL;
+  const { slug } = useParams();
+  const [news, setNews] = useState(null);
+  const [error, setError] = useState("");
+  const API = process.env.REACT_APP_API_URL;
+
+  const fetchNews = useCallback(async () => {
+    setError("");
+    try {
+      const postRes = await axios.get(`${API}/api/posts/${slug}`);
+      const post = postRes.data;
+      const imgsRes = await axios.get(`${API}/api/posts/${post.id}/images`);
+      const imgs = imgsRes.data.images ?? [];
+      setNews({ ...post, images: imgs });
+    } catch (e) {
+      console.error("Błąd ładowania posta lub zdjęć:", e);
+      setError(
+        "Nie udało się wczytać artykułu. Sprawdź połączenie i spróbuj ponownie."
+      );
+    }
+  }, [API, slug]);
 
   useEffect(() => {
-    (async () => {
-      try {
-        const post = (await axios.get(`${API}/api/posts/${slug}`)).data;
-        const imgs = (await axios.get(`${API}/api/posts/${post.id}/images`)).data.images ?? [];
+    fetchNews();
+  }, [fetchNews]);
 
-        setNews({ ...post, images: imgs });
-      } catch (e) {
-        console.error("Błąd ładowania posta lub zdjęć:", e);
-      }
-    })();
-  }, [slug, API]);
-
-  if (!news) {
-    return (
-      <main className="news-page page">
-        <section className="news-container light-section">
-          <Spinner />
-        </section>
-      </main>
-    );
-  }
-
-  const items = news.images
-    .filter((i) => i.url && i.width && i.height)
-    .map((i) => ({
-      src: `${API}${i.url}`,           // oryginalny obraz
-      width: Number(i.width),         // z bazy – prawdziwe wymiary
-      height: Number(i.height),
-    }));
-
-  const photos = items.map((p) => ({ ...p })); // kopia do gallery
-
+  // Zawsze pokazujemy BackButton
   return (
     <main className="news-page page">
       <section className="news-container light-section">
         <BackButton />
 
-        <h1>{news.tytul}</h1>
-        <p className="news-date">
-          {news.data_utworzenia
-            ? new Date(news.data_utworzenia).toLocaleDateString("pl-PL")
-            : ""}
-        </p>
+        {error ? (
+          <ErrorMessage message={error} onRetry={fetchNews} />
+        ) : !news ? (
+          <Spinner />
+        ) : (
+          <>
+            <h1>{news.tytul}</h1>
+            <p className="news-date">
+              {news.data_utworzenia
+                ? new Date(news.data_utworzenia).toLocaleDateString("pl-PL")
+                : ""}
+            </p>
 
-        <div className="news-details">
-          <div
-            className="news-content"
-            dangerouslySetInnerHTML={{ __html: news.opis }}
-          />
+            <div className="news-details">
+              <div
+                className="news-content"
+                dangerouslySetInnerHTML={{ __html: news.opis }}
+              />
 
-          {photos.length > 0 && (
-            <div className="news-gallery">
-              <ImageGallery photos={photos} items={items} />
+              {news.images.length > 0 && (
+                <div className="news-gallery">
+                  <ImageGallery
+                    photos={news.images.map((i) => ({
+                      src: `${API}${i.url}`,
+                      width: Number(i.width),
+                      height: Number(i.height),
+                    }))}
+                    items={news.images.map((i) => ({
+                      src: `${API}${i.url}`,
+                      width: Number(i.width),
+                      height: Number(i.height),
+                    }))}
+                  />
+                </div>
+              )}
             </div>
-          )}
-        </div>
+          </>
+        )}
       </section>
     </main>
   );
