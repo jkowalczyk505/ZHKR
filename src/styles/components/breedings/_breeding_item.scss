@@ -87,3 +87,71 @@
     }
   }
 }
+
+// === Responsive tweaks ===
+/* Phones */
+@media screen and (max-width: 480px) {
+  .breeding-item {
+    .breeding-icons {
+      gap: 1rem;                     // większy odstęp między ikonami
+      font-size: 1.8rem;             // większe ikony
+      a {
+        padding: 0.6rem;             // większy obszar dotyku
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.4rem;
+      }
+    }
+
+    .breeding-actions {
+      .btn {
+        padding: 0.8rem 1.2rem;      // większe przyciski
+        font-size: 1rem;
+        min-width: 6rem;
+      }
+    }
+  }
+}
+
+/* Small tablets / landscape phones */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .breeding-item {
+    .breeding-icons {
+      gap: 0.9rem;
+      font-size: 1.6rem;
+      a {
+        padding: 0.5rem;
+      }
+    }
+
+    .breeding-actions {
+      .btn {
+        padding: 0.7rem 1.1rem;
+        font-size: 0.95rem;
+        min-width: 5.5rem;
+      }
+    }
+  }
+}
+
+/* Tablets / small desktops */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .breeding-item {
+    .breeding-icons {
+      gap: 0.8rem;
+      font-size: 1.4rem;
+      a {
+        padding: 0.4rem;
+      }
+    }
+
+    .breeding-actions {
+      .btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+        min-width: 5rem;
+      }
+    }
+  }
+}
