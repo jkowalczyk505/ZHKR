@@ -4,6 +4,7 @@
     align-items: center;
     background-color: $main-color;
     padding: 2rem;
+    min-height: 7vh;
 }
 
 .notfound-box {
@@ -50,4 +51,83 @@
     width: 100%;
     height: auto;
     flex-shrink: 0;
+}
+
+// TABLETY
+@media (max-width: 1024px) {
+    .notfound-container {
+        padding: 1.5rem;
+    }
+
+    .notfound-box {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        padding: 1.5rem;
+    }
+
+    .notfound-text {
+        h1 {
+            font-size: 5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.5rem;
+        }
+
+        .btn {
+            font-size: 0.95rem;
+            padding: 0.6rem 1.2rem;
+        }
+    }
+
+    .notfound-image {
+        max-width: 300px;
+    }
+}
+
+// TELEFONY
+@media (max-width: 768px) {
+    .notfound-container {
+        padding: 1rem;
+    }
+
+    .notfound-box {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1rem;
+    }
+
+    .notfound-text {
+        h1 {
+            font-size: 4rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.4rem;
+        }
+
+        .btn {
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+        }
+    }
+
+    .notfound-image {
+        max-width: 80%;
+    }
 }

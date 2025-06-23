@@ -4,17 +4,76 @@
             font-size: 2.7vw;
             margin-bottom: 3rem;
         }
+
         .subjects-below {
             .subject-below {
                 margin-bottom: 1rem;
+
                 .subject-title {
                     font-size: 1.2rem;
                     margin-bottom: 0.3rem;
                 }
+
                 .subject-content {
                     line-height: 1.3;
                     text-align: justify;
                     font-size: 1rem;
+                }
+            }
+        }
+    }
+}
+
+// TABLETY
+@media (max-width: 1024px) {
+    .guide-details {
+        .guide-div {
+            .guide-title {
+                font-size: 2.2rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .subjects-below {
+                .subject-below {
+                    margin-bottom: 0.8rem;
+
+                    .subject-title {
+                        font-size: 1.1rem;
+                        margin-bottom: 0.25rem;
+                    }
+
+                    .subject-content {
+                        font-size: 0.95rem;
+                        line-height: 1.35;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// TELEFONY
+@media (max-width: 768px) {
+    .guide-details {
+        .guide-div {
+            .guide-title {
+                font-size: 1.8rem;
+                margin-bottom: 2rem;
+            }
+
+            .subjects-below {
+                .subject-below {
+                    margin-bottom: 0.6rem;
+
+                    .subject-title {
+                        font-size: 1rem;
+                        margin-bottom: 0.2rem;
+                    }
+
+                    .subject-content {
+                        font-size: 0.9rem;
+                        line-height: 1.4;
+                    }
                 }
             }
         }
