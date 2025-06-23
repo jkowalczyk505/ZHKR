@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/ZHKR/static/css/main.83cf5c64.css",
-    "main.js": "/ZHKR/static/js/main.307b07b9.js",
+    "main.css": "/ZHKR/static/css/main.b2150598.css",
+    "main.js": "/ZHKR/static/js/main.36973729.js",
     "static/js/9.a3679df4.chunk.js": "/ZHKR/static/js/9.a3679df4.chunk.js",
     "static/media/files-banner.jpg": "/ZHKR/static/media/files-banner.109c339c5d0c84326689.jpg",
     "static/media/contact-banner.jpg": "/ZHKR/static/media/contact-banner.dc8a11a1c092a91c4fa3.jpg",
@@ -19,12 +19,12 @@
     "static/media/slick.eot": "/ZHKR/static/media/slick.a4e97f5a2a64f0ab1323.eot",
     "static/media/slick.ttf": "/ZHKR/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/ZHKR/static/media/slick.295183786cd8a1389865.woff",
-    "main.83cf5c64.css.map": "/ZHKR/static/css/main.83cf5c64.css.map",
-    "main.307b07b9.js.map": "/ZHKR/static/js/main.307b07b9.js.map",
+    "main.b2150598.css.map": "/ZHKR/static/css/main.b2150598.css.map",
+    "main.36973729.js.map": "/ZHKR/static/js/main.36973729.js.map",
     "9.a3679df4.chunk.js.map": "/ZHKR/static/js/9.a3679df4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.83cf5c64.css",
-    "static/js/main.307b07b9.js"
+    "static/css/main.b2150598.css",
+    "static/js/main.36973729.js"
   ]
 }
