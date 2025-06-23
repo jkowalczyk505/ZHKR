@@ -1,29 +1,80 @@
 .map {
-    .map-tile {
-        display: flex;
-        background-color: $secondary-color-darken;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  .map-tile {
+    display: flex;
+    flex-wrap: nowrap;           // desktop: zawsze obok siebie
+    align-items: center;
+    background-color: $secondary-color-darken;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
-        p {
-            width: 40%;
-            padding: 3rem;
-            font-size: 1.3rem;
-            font-style: italic;
-            align-content: center;
-            line-height: 3rem;
-        }
+    p {
+      flex: 1 1 40%;
+      min-width: 280px;
+      padding: 3rem;
+      font-size: 1.3rem;
+      font-style: italic;
+      line-height: 1.6;
     }
+  }
 
-    .copyright {
-        font-size: 0.5rem;
-        a {
-            text-decoration: none;
-            color: $main-color;
-        }
+  .copyright {
+    font-size: 0.5rem;
+    a {
+      text-decoration: none;
+      color: $main-color;
     }
+  }
 }
+
 .register-your-breeding {
-    .register-heading {
-        font-size: 2.7vw;
+  .register-heading {
+    font-size: 2.7vw;
+  }
+}
+
+// === MEDIA QUERIES ===
+
+@media (max-width: 1024px) {
+  .map {
+    .map-tile {
+      flex-wrap: wrap;           // tablety: kolumnowo
+      flex-direction: column;
+      align-items: flex-start;
+
+      p {
+        width: 100%;
+        padding: 2rem 1.5rem;
+        text-align: center;
+        font-size: 1.2rem;
+      }
     }
+    .copyright {
+      margin-top: 0.6rem;
+      text-align: center;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .map {
+    .map-tile {
+      p {
+        padding: 1.5rem 1rem;
+        font-size: 1.1rem;
+      }
+    }
+    .copyright {
+      font-size: 0.4rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .map {
+    .map-tile {
+      p {
+        padding: 1rem 0.5rem;
+        font-size: 1rem;
+      }
+    }
+  }
 }

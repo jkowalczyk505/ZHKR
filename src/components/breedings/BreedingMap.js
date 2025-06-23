@@ -7,7 +7,7 @@ import CustomMarkerIcon from "../../assets/marker-icon.png";
 import axios from "axios";
 
 const center = [52.1, 19.4];
-const zoom = 6;
+const zoom = 5;
 
 const CustomMarker = new L.Icon({
   iconUrl: CustomMarkerIcon,
