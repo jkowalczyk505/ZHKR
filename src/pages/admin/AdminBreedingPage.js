@@ -102,7 +102,23 @@ function AdminBreedingPage() {
 
   const handleSave = async (data) => {
     try {
-      const isEdit = !!data.numer;
+      const isEdit = !!selectedBreeding;
+
+      const formDataToSend = new FormData();
+
+      // Dodaj wszystkie pola formularza jako tekst
+      for (const key in data) {
+        if (key !== "zdjecie" && key !== "usunZdjecie") {
+          formDataToSend.append(key, data[key] || "");
+        }
+      }
+
+      // Dodaj zdjęcie lub informację o usunięciu
+      if (data.usunZdjecie) {
+        formDataToSend.append("usunZdjecie", "true");
+      } else if (data.zdjecie instanceof File) {
+        formDataToSend.append("zdjecie", data.zdjecie);
+      }
 
       const response = await fetch(
         isEdit
@@ -110,25 +126,24 @@ function AdminBreedingPage() {
           : `${API_URL}/api/hodowle`,
         {
           method: isEdit ? "PUT" : "POST",
-          headers: { "Content-Type": "application/json" },
           credentials: "include",
-          body: JSON.stringify(data),
+          body: formDataToSend,
         }
       );
 
-      const result = await response.json(); // ZAWSZE odczytaj json() jako pierwszy
+      const result = await response.json();
 
       if (!response.ok) {
         throw new Error(result.message || "Błąd podczas zapisu danych.");
       }
 
-      setBreedings((prev) => {
-        if (isEdit) {
-          return prev.map((b) => (b.numer === result.numer ? result : b));
-        } else {
-          return [...prev, result];
-        }
-      });
+      // Odśwież listę hodowli po zapisie
+      const refreshed = await fetch(`${API_URL}/api/hodowle`);
+      const refreshedData = await refreshed.json();
+      const sorted = refreshedData.sort((a, b) =>
+        a.nazwa.localeCompare(b.nazwa, "pl", { sensitivity: "base" })
+      );
+      setBreedings(sorted);
 
       setAlertMessage(
         isEdit ? "Hodowla zaktualizowana." : "Dodano nową hodowlę."
@@ -136,7 +151,6 @@ function AdminBreedingPage() {
       setModalOpen(false);
     } catch (err) {
       console.error("Błąd przy zapisie:", err);
-      // RZUCAMY DALEJ DO MODALA
       throw err;
     }
   };
