@@ -2,6 +2,7 @@
 - backend zabezpieczyc
 - modal - dodawanie i edycja postów (+ zdjecia)
 - spinner + error + floating error na zadanie na podstronie postow admina
+- jak dolaczyc zatrzymuje sie na spinerze
 
 - jak dołączyć
 - wiedza: tresc poradnikow
@@ -10,3 +11,4 @@
 - linki w stopce maja prowadzic do faktycznych social
 
 -responsywnosc
+ *linki w stopce za male

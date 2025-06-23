@@ -8,3 +8,43 @@
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 }
+
+@media (max-width: 1024px) {
+  .all-breadings {
+    .breeding-tile-list {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      padding: 1.5rem;
+    }
+    .all-breadings-h {
+      font-size: 2.2rem;
+      text-align: center;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .all-breadings {
+    .breeding-tile-list {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      padding: 1rem;
+    }
+    .all-breadings-h {
+      font-size: 1.9rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .all-breadings {
+    .all-breadings-h {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+    .breeding-tile-list {
+      gap: 0.8rem;
+      padding: 0.8rem;
+    }
+  }
+}
