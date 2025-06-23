@@ -65,6 +65,7 @@ function Footer() {
       <div className="footer-bottom">
         &copy; 2025 ZHKR. Wszelkie prawa zastrzeżone.
       </div>
+      <a href="/admin">Admin</a>
     </footer>
   );
 }

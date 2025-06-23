@@ -1,5 +1,5 @@
 {
-  "proxy": "https://zhkr.duckdns.org:5005",
+  "proxy": "https://linuxnode.duckdns.org:5005",
   "name": "zhkr",
   "version": "0.1.0",
   "homepage": "https://jkowalczyk505.github.io/ZHKR",
