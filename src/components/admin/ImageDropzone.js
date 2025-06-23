@@ -1,7 +1,6 @@
 // pole na dodawanie, edycje, usuwanie zdjec
 import React from "react";
 import { useDropzone } from "react-dropzone";
-import "./ImageDropzone.scss";
 
 function ImageDropzone({
   previewUrl,
