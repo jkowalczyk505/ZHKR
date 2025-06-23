@@ -116,3 +116,49 @@ h3 {
     }
   }
 }
+
+// MEDIA QUERIES
+@media (max-width: 1024px) {
+
+  // TABLETY
+  .page {
+    section {
+      padding: 4rem;
+    }
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-size: 2rem;
+  }
+
+  .with-line::after {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+
+  // TELEFONY
+  .page {
+    min-height: 70vh;
+
+    section {
+      padding: 2rem;
+    }
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+  }
+
+}
