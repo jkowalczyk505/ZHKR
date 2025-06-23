@@ -1,6 +1,6 @@
-// pole na dodawanie, edycje, usuwanie zdjec
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
+import Spinner from "../Spinner";
 
 function ImageDropzone({
   previewUrl,
@@ -8,12 +8,16 @@ function ImageDropzone({
   setImageFile,
   setRemoveImage,
 }) {
+  // 🔹 stan ładowania podglądu
+  const [isImgLoading, setIsImgLoading] = useState(false);
+
   const onDrop = (acceptedFiles) => {
     const file = acceptedFiles[0];
     if (file) {
       setImageFile(file);
       setPreviewUrl(URL.createObjectURL(file));
       setRemoveImage(false);
+      setIsImgLoading(true); // 🔹 uruchamiamy spinner
     }
   };
 
@@ -22,6 +26,13 @@ function ImageDropzone({
     accept: { "image/*": [] },
     maxFiles: 1,
   });
+
+  // 🔹 gdy zmieni się URL podglądu, też włącz spinner
+  useEffect(() => {
+    if (previewUrl) {
+      setIsImgLoading(true);
+    }
+  }, [previewUrl]);
 
   return (
     <div className="form-group image-group">
@@ -37,11 +48,36 @@ function ImageDropzone({
           )}
         </div>
       ) : (
-        <div className="image-preview">
+        <div className="image-preview" style={{ position: "relative" }}>
+          {/* 🔹 Spinner nakładany na obraz */}
+          {isImgLoading && (
+            <div
+              className="preview-spinner"
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                background: "rgba(255,255,255,0.7)",
+                zIndex: 1,
+              }}
+            >
+              <Spinner />
+            </div>
+          )}
           <img
             src={previewUrl}
             alt="Podgląd zdjęcia"
-            style={{ maxWidth: "100%", borderRadius: "5px" }}
+            style={{
+              maxWidth: "100%",
+              borderRadius: "5px",
+              display: isImgLoading ? "none" : "block", // ukrywamy aż załaduje
+            }}
+            onLoad={() => setIsImgLoading(false)} // 🔹 wyłączamy spinner
           />
           <button
             type="button"
