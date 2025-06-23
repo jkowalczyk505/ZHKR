@@ -1,6 +1,7 @@
 import React from "react";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import logoInverted from "../assets/logo.png";
+import { NavLink } from "react-router-dom";
 
 function Footer() {
   return (
@@ -65,7 +66,7 @@ function Footer() {
       <div className="footer-bottom">
         &copy; 2025 ZHKR. Wszelkie prawa zastrzeżone.
       </div>
-      <a href="/admin">Admin</a>
+      <NavLink to="/admin">Admin</NavLink>
     </footer>
   );
 }
