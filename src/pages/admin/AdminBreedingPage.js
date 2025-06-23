@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import BreedingItem from "../../components/breedings/BreedingItem";
 import Button from "../../components/Button";
 import { FaHome } from "react-icons/fa";
@@ -7,18 +6,19 @@ import Spinner from "../../components/Spinner";
 import CustomAlert from "../../components/CustomAlert";
 import BackButton from "../../components/BackButton";
 import ErrorMessage from "../../components/ErrorMessage";
-
+import BreedingModal from "../../components/admin/BreedingModal";
 const API_URL = process.env.REACT_APP_API_URL;
 
 function AdminBreedingPage() {
-  const navigate = useNavigate();
   const [alertMessage, setAlertMessage] = useState(null);
   const [confirmNumer, setConfirmNumer] = useState(null);
   const [confirmBreeding, setConfirmBreeding] = useState(null);
   const [breedings, setBreedings] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
   const [error, setError] = useState(null);
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedBreeding, setSelectedBreeding] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,11 +44,14 @@ function AdminBreedingPage() {
   }, []);
 
   const handleAdd = () => {
-    navigate("/admin/hodowle/nowa");
+    setSelectedBreeding(null);
+    setModalOpen(true);
   };
 
   const handleEdit = (numer) => {
-    navigate(`/admin/hodowle/edytuj/${numer}`);
+    const found = breedings.find((b) => b.numer === numer);
+    setSelectedBreeding(found);
+    setModalOpen(true);
   };
 
   const handleDelete = (numer) => {
@@ -80,6 +83,47 @@ function AdminBreedingPage() {
     } finally {
       setConfirmNumer(null);
       setConfirmBreeding(null);
+    }
+  };
+
+  const handleSave = async (data) => {
+    try {
+      const isEdit = !!data.numer;
+
+      const response = await fetch(
+        isEdit
+          ? `${API_URL}/api/hodowle/${encodeURIComponent(data.numer)}`
+          : `${API_URL}/api/hodowle`,
+        {
+          method: isEdit ? "PUT" : "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify(data),
+        }
+      );
+
+      const result = await response.json(); // ZAWSZE odczytaj json() jako pierwszy
+
+      if (!response.ok) {
+        throw new Error(result.message || "Błąd podczas zapisu danych.");
+      }
+
+      setBreedings((prev) => {
+        if (isEdit) {
+          return prev.map((b) => (b.numer === result.numer ? result : b));
+        } else {
+          return [...prev, result];
+        }
+      });
+
+      setAlertMessage(
+        isEdit ? "Hodowla zaktualizowana." : "Dodano nową hodowlę."
+      );
+      setModalOpen(false);
+    } catch (err) {
+      console.error("Błąd przy zapisie:", err);
+      // RZUCAMY DALEJ DO MODALA
+      throw err;
     }
   };
 
@@ -135,7 +179,7 @@ function AdminBreedingPage() {
         </div>
       )}
 
-      {!isLoading && (
+      {!isLoading && !error && (
         <div className="add-breeding">
           <div className="left">
             <FaHome className="home-icon" />
@@ -167,6 +211,14 @@ function AdminBreedingPage() {
           cancelButtonText="Anuluj"
         />
       )}
+
+      {/* 🔽 MODAL DODAWANIA / EDYCJI */}
+      <BreedingModal
+        isOpen={modalOpen}
+        initialData={selectedBreeding}
+        onClose={() => setModalOpen(false)}
+        onSave={handleSave}
+      />
     </main>
   );
 }
