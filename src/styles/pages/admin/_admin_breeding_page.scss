@@ -83,6 +83,124 @@
             }
         }
     }
+}
 
+@media (max-width: 1024px) {
+    .admin-breeding-page {
+        padding: 4rem;
 
+        h1 {
+            font-size: 1.8rem;
+        }
+
+        .breeding-item-wrapper.admin {
+            .breeding-item {
+                height: 360px;
+
+                .breeding-image {
+                    height: 200px;
+                }
+
+                .breeding-info {
+                    .info-text p {
+                        font-size: 0.9rem;
+                    }
+
+                    .breeding-icons {
+                        font-size: 1rem;
+                    }
+                }
+
+                .breeding-name {
+                    font-size: 0.95rem;
+                    height: 2.8rem;
+                }
+            }
+        }
+
+        .admin-controls {
+            flex-direction: column;
+            align-items: stretch;
+
+            .btn {
+                margin: 0.5rem 0;
+                font-size: 1rem;
+            }
+        }
+
+        .add-breeding {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+
+            .left {
+                .home-icon {
+                    margin-right: 0;
+                    margin-bottom: 1rem;
+                }
+            }
+
+            .right {
+                .btn {
+                    font-size: 1.1rem;
+                    padding: 0.8rem 1.5rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-breeding-page {
+        padding: 2rem;
+
+        h1 {
+            font-size: 1.5rem;
+        }
+
+        .breeding-list {
+            grid-template-columns: 1fr;
+        }
+
+        .breeding-item-wrapper.admin {
+            .breeding-item {
+                height: 320px;
+
+                .breeding-image {
+                    height: 180px;
+                }
+
+                .breeding-info {
+                    .info-text p {
+                        font-size: 0.85rem;
+                    }
+
+                    .breeding-icons {
+                        font-size: 0.95rem;
+                    }
+                }
+
+                .breeding-name {
+                    font-size: 0.9rem;
+                    height: 2.5rem;
+                }
+            }
+        }
+
+        .admin-controls {
+            .btn {
+                font-size: 0.95rem;
+                padding: 0.5rem 1rem;
+            }
+        }
+
+        .add-breeding {
+            .right {
+                .btn {
+                    font-size: 1rem;
+                    padding: 0.6rem 1.2rem;
+                }
+            }
+        }
+    }
 }

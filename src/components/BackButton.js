@@ -12,7 +12,7 @@ const BackButton = () => {
   return (
     <button className="back-button" onClick={handleClick}>
       <IoIosArrowBack className="back-icon" />
-      Wstecz
+      <span className="back-text">Wstecz</span>
     </button>
   );
 };

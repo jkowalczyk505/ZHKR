@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import Button from "../Button";
 import { useDropzone } from "react-dropzone";
 import FloatingErrorAlert from "../FloatingErrorAlert";
+import ImageDropzone from "./ImageDropzone";
 import Spinner from "../Spinner";
 
 function BreedingModal({ isOpen, onClose, onSave, initialData }) {
@@ -192,41 +193,12 @@ function BreedingModal({ isOpen, onClose, onSave, initialData }) {
               </div>
             ))}
 
-            <div className="form-group image-group">
-              <label>Zdjęcie hodowli</label>
-              {!previewUrl && (
-                <div {...getRootProps()} className="dropzone-wrapper">
-                  <input {...getInputProps()} />
-                  {isDragActive ? (
-                    <p>Upuść zdjęcie tutaj...</p>
-                  ) : (
-                    <p>Kliknij lub przeciągnij zdjęcie tutaj</p>
-                  )}
-                </div>
-              )}
-
-              {previewUrl && (
-                <div className="image-preview">
-                  <img
-                    src={previewUrl}
-                    alt="Podgląd zdjęcia"
-                    style={{ maxWidth: "100%", borderRadius: "5px" }}
-                  />
-                  <button
-                    type="button"
-                    className="remove-image-btn"
-                    onClick={() => {
-                      setPreviewUrl("");
-                      setImageFile(null);
-                      setRemoveImage(true);
-                    }}
-                    aria-label="Usuń zdjęcie"
-                  >
-                    ×
-                  </button>
-                </div>
-              )}
-            </div>
+            <ImageDropzone
+              previewUrl={previewUrl}
+              setPreviewUrl={setPreviewUrl}
+              setImageFile={setImageFile}
+              setRemoveImage={setRemoveImage}
+            />
           </div>
 
           <div className="actions">
