@@ -1,81 +1,83 @@
 .header {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    align-items: center;
-    padding: 2rem 0;
-    background-color: $secondary-color-darken;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+  display: flex;
+  justify-content: center;
+  position: relative;
+  align-items: center;
+  padding: 2rem 0;
+  background-color: $secondary-color-darken;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+  min-height: 8vh;
 
-    img {
-        position: absolute;
-        z-index: 999;
-        left: 7rem;
-        bottom: -3.6rem;
-        border-radius: 50%;
-        width: 9rem;
-    }
+  img {
+    position: absolute;
+    z-index: 999;
+    left: 7rem;
+    bottom: -3.6rem;
+    border-radius: 50%;
+    width: 9rem;
+  }
 
-    #main-nav {
-        .menu {
-            display: flex;
-            list-style: none;
-            gap: 5rem;
+  #main-nav {
+    .menu {
+      display: flex;
+      list-style: none;
+      gap: 5rem;
 
-            .menu-item {
-                .nav-link {
-                    color: $accent-color;
-                    text-decoration: none;
-                    font-size: 1rem;
-                    font-family: $font-heading;
-                    font-weight: 500;
-                    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-                    position: relative;
-                    text-transform: uppercase;
+      .menu-item {
+        .nav-link {
+          color: $accent-color;
+          text-decoration: none;
+          font-size: 1rem;
+          font-family: $font-heading;
+          font-weight: 500;
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+          position: relative;
+          text-transform: uppercase;
 
-                    display: inline-block;
-                    transition: all 0.3s ease;
+          display: inline-block;
+          transition: all 0.3s ease;
 
-                    &::after {
-                        content: '';
-                        position: absolute;
-                        left: 0;
-                        bottom: -.35rem;
-                        width: 0;
-                        height: 2px;
-                        background: $light-color;
-                        transition: width .3s;
-                    }
+          &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -.35rem;
+            width: 0;
+            height: 2px;
+            background: $light-color;
+            transition: width .3s;
+          }
 
-                    &:hover,
-                    &:focus-visible {
-                        color: $light-color;
-                        transform: scale(1.05);
+          &:hover,
+          &:focus-visible {
+            color: $light-color;
+            transform: scale(1.05);
 
-                        &::after {
-                            width: 100%;
-                        }
-                    }
-
-                    &.active {
-                        color: $light-color;
-
-                        &::after {
-                            width: 100%;
-                        }
-                    }
-
-                    &:active {
-                        transform: scale(0.97);
-                        opacity: 0.9;
-                    }
-                }
+            &::after {
+              width: 100%;
             }
+          }
+
+          &.active {
+            color: $light-color;
+
+            &::after {
+              width: 100%;
+            }
+          }
+
+          &:active {
+            transform: scale(0.97);
+            opacity: 0.9;
+          }
         }
-        &.open .menu {
-            display: flex;
-        }
+      }
     }
+
+    &.open .menu {
+      display: flex;
+    }
+  }
 }
 
 // === RESPONSYWNOŚĆ HEADERA ===
@@ -84,7 +86,7 @@
     padding: 1.5rem 1rem;
 
     .logo-wrapper {
-        display: none;
+      display: none;
     }
 
     #main-nav .menu {
@@ -156,9 +158,9 @@
 
 
 @media screen and (max-width: 1300px) {
-    .header {
-        .logo-wrapper {
-            display: none;
-        }
+  .header {
+    .logo-wrapper {
+      display: none;
     }
+  }
 }

@@ -1,38 +1,39 @@
 .admin-tile {
-    background-color: $light-color;
+  background-color: $light-color;
+  color: $secondary-color;
+  border-radius: 12px;
+  padding: 3rem 4rem;
+  text-align: center;
+  font-family: $font-heading;
+  font-size: 1.4rem;
+  text-decoration: none;
+  box-shadow: 0 2px 4px rgba(0, 1, 1, 0.1);
+  transition: background-color 0.3s ease;
+
+  .icon {
+    margin-bottom: 1rem;
     color: $secondary-color;
-    border-radius: 12px;
-    padding: 3rem 4rem;
-    text-align: center;
-    font-family: $font-heading;
-    font-size: 1.4rem;
-    text-decoration: none;
-    box-shadow: 0 2px 4px rgba(0, 1, 1, 0.1);
-    transition: background-color 0.3s ease;
+    transition: color 0.3s ease;
+  }
+
+  h2 {
+    transition: color 0.3s ease;
+  }
+
+  &:hover {
+    background-color: $secondary-color;
+    color: $main-color;
 
     .icon {
-        margin-bottom: 1rem;
-        color: $secondary-color;
-        transition: color 0.3s ease;
+      color: $main-color;
     }
 
     h2 {
-        transition: color 0.3s ease;
+      color: $main-color;
     }
-
-    &:hover {
-        background-color: $secondary-color;
-        color: $main-color;
-
-        .icon {
-            color: $main-color;
-        }
-
-        h2 {
-            color: $main-color;
-        }
-    }
+  }
 }
+
 .light-tile {
   background-color: $light-color;
   color: $secondary-color;
@@ -56,6 +57,37 @@
 
     h2 {
       color: $secondary-color-darken;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+
+  .admin-tile,
+  .light-tile {
+    padding: 2rem 3rem;
+    font-size: 1.2rem;
+
+    .icon {
+      font-size: 2rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+
+  .admin-tile,
+  .light-tile {
+    width: 100%;
+    padding: 1.5rem 2rem;
+    font-size: 1.1rem;
+
+    .icon {
+      font-size: 1.8rem;
+    }
+
+    h2 {
+      font-size: 1.3rem;
     }
   }
 }
