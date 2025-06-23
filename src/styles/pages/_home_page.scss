@@ -129,3 +129,74 @@
     }
   }
 }
+
+// === MEDIA QUERIES ===
+@media (max-width: 1024px) {
+  .hero {
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+
+    .hero-left {
+      width: 100%;
+
+      h1 {
+        font-size: 2.2rem;
+        line-height: 3rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+      .buttons {
+        justify-content: center;
+      }
+    }
+
+    img {
+      width: 60%;
+      margin-top: 1rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .register-section .register-box,
+  .knowledge-section .knowledge-box {
+    flex-direction: column;
+    text-align: center;
+
+    .text {
+      width: 100%;
+
+      h2 {
+        font-size: 1.7rem;
+      }
+    }
+
+    .icon {
+      width: auto;
+      font-size: 7rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .hero .hero-left h1 {
+    font-size: 1.8rem;
+    line-height: 2.5rem;
+  }
+
+  .hero .hero-left p {
+    font-size: 0.95rem;
+  }
+
+  .hero img {
+    width: 80%;
+  }
+
+  .register-section .register-box .icon,
+  .knowledge-section .knowledge-box .icon {
+    font-size: 6rem;
+  }
+}
