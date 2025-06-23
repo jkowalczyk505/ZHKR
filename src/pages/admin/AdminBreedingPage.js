@@ -8,6 +8,7 @@ import BackButton from "../../components/BackButton";
 import ErrorMessage from "../../components/ErrorMessage";
 import BreedingModal from "../../components/admin/BreedingModal";
 import FloatingErrorAlert from "../../components/FloatingErrorAlert";
+import ModalContact from "../../components/breedings/ModalContact";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -20,7 +21,7 @@ function AdminBreedingPage() {
   const [error, setError] = useState(null);
   const [deleteErrorMessage, setDeleteErrorMessage] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
-
+  const [contactModalData, setContactModalData] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedBreeding, setSelectedBreeding] = useState(null);
 
@@ -46,6 +47,14 @@ function AdminBreedingPage() {
 
     fetchData();
   }, []);
+
+  const handleContactClick = (breeding) => {
+    setContactModalData({
+      name: breeding.nazwa,
+      phone: breeding.telefon,
+      email: breeding.email,
+    });
+  };
 
   const handleAdd = () => {
     setSelectedBreeding(null);
@@ -186,7 +195,9 @@ function AdminBreedingPage() {
                   fb={breeding.fb}
                   ig={breeding.ig}
                   www={breeding.www}
+                  onContactClick={() => handleContactClick(breeding)}
                 />
+
                 <div className="admin-controls">
                   <Button
                     variant="primary"
@@ -254,6 +265,16 @@ function AdminBreedingPage() {
         <div className="spinner-overlay">
           <Spinner />
         </div>
+      )}
+
+      {contactModalData && (
+        <ModalContact
+          isOpen={!!contactModalData}
+          onClose={() => setContactModalData(null)}
+          name={contactModalData.name}
+          phone={contactModalData.phone}
+          email={contactModalData.email}
+        />
       )}
     </main>
   );
