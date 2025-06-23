@@ -4,9 +4,44 @@
             font-size: 2.7vw;
             margin-bottom: 2rem;
         }
+
         p {
             font-size: 1rem;
             line-height: 1.4;
+        }
+    }
+}
+
+// TABLETY
+@media (max-width: 1024px) {
+    .about-page {
+        .about-section {
+            h2 {
+                font-size: 2.2rem;
+                margin-bottom: 1.5rem;
+            }
+
+            p {
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+        }
+    }
+}
+
+// TELEFONY
+@media (max-width: 768px) {
+    .about-page {
+        .about-section {
+            h2 {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+
+            p {
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
         }
     }
 }
