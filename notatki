@@ -1,9 +1,10 @@
 - seo + sitemap + robots + index podmienic dane + manifest json
 - backend zabezpieczyc
-- animacje wiedza
 - przetestowac endpointy uzywajace ciasteczek!!! jak już bedzie front na https
-- modal - dodawanie i edycja hodowli (+zdjecia)
+- modal - dodawanie i edycja postów (+ zdjecia)
 - nie udalo sie otrzymac odp na jakies zadanie np logowanie, dodanie hodowli - blad
+- spinner + error na podstronie posta
+- spinner + error na podstronie postow admina
 
 - jak dołączyć
 - wiedza: tresc poradnikow

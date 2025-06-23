@@ -7,6 +7,8 @@ import CustomAlert from "../../components/CustomAlert";
 import BackButton from "../../components/BackButton";
 import ErrorMessage from "../../components/ErrorMessage";
 import BreedingModal from "../../components/admin/BreedingModal";
+import FloatingErrorAlert from "../../components/FloatingErrorAlert";
+
 const API_URL = process.env.REACT_APP_API_URL;
 
 function AdminBreedingPage() {
@@ -16,6 +18,8 @@ function AdminBreedingPage() {
   const [breedings, setBreedings] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [deleteErrorMessage, setDeleteErrorMessage] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedBreeding, setSelectedBreeding] = useState(null);
@@ -63,6 +67,7 @@ function AdminBreedingPage() {
   };
 
   const confirmDelete = async () => {
+    setIsDeleting(true);
     try {
       const response = await fetch(
         `${API_URL}/api/hodowle/${encodeURIComponent(confirmNumer)}`,
@@ -76,13 +81,22 @@ function AdminBreedingPage() {
         setBreedings((prev) => prev.filter((b) => b.numer !== confirmNumer));
         setAlertMessage("Hodowla została pomyślnie usunięta.");
       } else {
-        console.error("Nie udało się usunąć hodowli");
+        const result = await response.json().catch(() => ({}));
+        throw new Error(result.message || "Nie udało się usunąć hodowli.");
       }
     } catch (error) {
       console.error("Błąd przy usuwaniu:", error);
+      let msg = error.message || "Wystąpił błąd podczas usuwania.";
+      if (msg === "Failed to fetch") {
+        msg = "Brak połączenia z serwerem. Sprawdź internet.";
+      }
+      setDeleteErrorMessage(msg);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      setTimeout(() => setDeleteErrorMessage(""), 7000);
     } finally {
       setConfirmNumer(null);
       setConfirmBreeding(null);
+      setIsDeleting(false);
     }
   };
 
@@ -219,6 +233,14 @@ function AdminBreedingPage() {
         onClose={() => setModalOpen(false)}
         onSave={handleSave}
       />
+      {deleteErrorMessage && (
+        <FloatingErrorAlert message={deleteErrorMessage} />
+      )}
+      {isDeleting && (
+        <div className="spinner-overlay">
+          <Spinner />
+        </div>
+      )}
     </main>
   );
 }

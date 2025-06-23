@@ -1,5 +1,7 @@
+// Komunikat na ekranie - czy aby na pewno chcesz usunac hodowle
+
 import React from "react";
-import Button from "./Button"; // Upewnij się, że ścieżka jest poprawna
+import Button from "./Button";
 
 function CustomAlert({
   message,
