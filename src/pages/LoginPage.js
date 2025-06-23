@@ -13,10 +13,11 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       await axios.post(
-        "/api/auth/login",
+        `${process.env.REACT_APP_API_URL}/api/auth/login`,
         { username, password },
         { withCredentials: true }
       );
+
       navigate("/admin");
     } catch (err) {
       setError("Błędny login lub hasło");

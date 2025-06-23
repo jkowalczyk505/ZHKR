@@ -100,7 +100,15 @@ function BreedingModal({ isOpen, onClose, onSave, initialData }) {
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    if (name === "telefon") {
+      // Pozwól tylko na cyfry, maks. 9 znaków
+      const filtered = value.replace(/\D/g, "").slice(0, 9);
+      setFormData({ ...formData, [name]: filtered });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const handleSubmit = async () => {
@@ -174,6 +182,12 @@ function BreedingModal({ isOpen, onClose, onSave, initialData }) {
                   placeholder={fieldLabels[field]}
                   className="form-field"
                   required={requiredFields.includes(field)}
+                  type={field === "email" ? "email" : "text"}
+                  pattern={
+                    field === "email"
+                      ? "[^@\\s]+@[^@\\s]+\\.[^@\\s]+"
+                      : undefined
+                  }
                 />
               </div>
             ))}

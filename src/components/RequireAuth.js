@@ -7,10 +7,12 @@ const RequireAuth = ({ children }) => {
   const [isAuth, setIsAuth] = useState(null); // null = loading
   const [loading, setLoading] = useState(true);
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await axios.get("/api/auth/me", { withCredentials: true });
+        await axios.get(`${API_URL}/api/auth/me`, { withCredentials: true });
         setIsAuth(true);
       } catch (err) {
         setIsAuth(false);

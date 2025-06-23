@@ -1,6 +1,5 @@
 - seo + sitemap + robots + index podmienic dane + manifest json
 - backend zabezpieczyc
-- przetestowac endpointy uzywajace ciasteczek!!! jak już bedzie front na https
 - modal - dodawanie i edycja postów (+ zdjecia)
 - error na podstronie posta
 - spinner + error + floating error na zadanie na podstronie postow admina
