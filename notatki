@@ -2,10 +2,8 @@
 - backend zabezpieczyc
 - przetestowac endpointy uzywajace ciasteczek!!! jak już bedzie front na https
 - modal - dodawanie i edycja postów (+ zdjecia)
-- nie udalo sie otrzymac odp na jakies zadanie np logowanie, dodanie hodowli - blad
-- pusta tablica zdjec
-- spinner + error na podstronie posta
-- spinner + error na podstronie postow admina
+- error na podstronie posta
+- spinner + error + floating error na zadanie na podstronie postow admina
 
 - jak dołączyć
 - wiedza: tresc poradnikow
