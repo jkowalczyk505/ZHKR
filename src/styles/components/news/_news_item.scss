@@ -53,3 +53,104 @@
         }
     }
 }
+
+// === RESPONSYWNOŚĆ NEWS ITEM ===
+@media (max-width: 1024px) {
+  .news-item {
+    /* już masz flex-direction: column */
+    flex-direction: column;
+    align-items: stretch;   /* rozciągnij elementy na całą szerokość */
+    text-align: left;
+    gap: 1.5rem;             /* odrobinę więcej przestrzeni */
+
+    img,
+    .news-placeholder {
+      width: 100%;           /* pełna szerokość karty */
+      max-width: none;       /* usuń ograniczenie 300px */
+      height: auto;
+      margin-bottom: 1rem;
+    }
+
+    .news-item-right {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      /* upewnij się, że przycisk jest na dole i ma odstęp */
+      .news-item-button {
+        margin-top: 1.5rem;  /* większy odstęp od opisu */
+        align-self: flex-start; /* przycisk wyrównany do lewej */
+      }
+
+      .news-item-title {
+        font-size: 1.4rem;
+      }
+
+      .news-item-description {
+        font-size: 1.1rem;
+        line-height: 1.5;    /* aby tekst nie pokrywał się przy zawijaniu */
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .news-item {
+    /* na dużych telefonach: karta cały czas pionowo, dopasuj odstępy */
+    gap: 1rem;
+    padding: 0.8rem;
+
+    img,
+    .news-placeholder {
+      max-width: 100%;
+      margin-bottom: 0.8rem;
+    }
+
+    .news-item-right {
+      .news-item-title {
+        font-size: 1.3rem;
+      }
+      .news-item-description {
+        font-size: 1rem;
+      }
+      .news-item-button {
+        margin-top: 1rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .news-item {
+    /* na małych ekranach: tekst centrowany, nieco mniejsze ikony i przyciski */
+    align-items: center;
+    text-align: center;
+    padding: 0.6rem;
+
+    img,
+    .news-placeholder {
+      width: 100%;
+      max-width: none;
+      margin-bottom: 0.6rem;
+    }
+
+    .news-item-right {
+      .news-item-title {
+        font-size: 1.2rem;
+      }
+      .news-item-description {
+        font-size: 0.95rem;
+      }
+      .news-item-button {
+        display: flex;           // dodaj to
+        justify-content: center; // oraz to
+        margin: 0.5rem auto;        // możesz zostawić albo dostosować
+
+        button {
+          padding: 0.4rem 0.8rem;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}
