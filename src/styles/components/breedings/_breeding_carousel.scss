@@ -44,3 +44,71 @@
     justify-self: center;
   }
 }
+
+// === MEDIA QUERIES ===
+@media (max-width: 1024px) {
+  .breedings-container {
+    h2 {
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .breeding-carousel {
+      width: 90%;
+
+      .custom-arrow {
+        width: 40px;
+        height: 40px;
+        svg { font-size: 1.2rem; }
+
+        &.prev { left: -60px; }
+        &.next { right: -60px; }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .breedings-container {
+    h2 {
+      font-size: 1.9rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .breeding-carousel {
+      width: 100%;
+
+      .custom-arrow {
+        display: none;  // na tabletach schowaj strzałki, bo slideToShow zmienia się na 2→1
+      }
+    }
+
+    .btn-all-breadings {
+      margin-top: 1.5rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .breedings-container {
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 2rem;
+    }
+
+    .breeding-carousel {
+      .slick-slide > div {
+        padding: 0 0.5rem;
+      }
+    }
+
+    .btn-all-breadings {
+      margin-top: 1.5rem;
+      button {
+        width: 100%;
+        padding: 0.8rem;
+      }
+    }
+  }
+}
