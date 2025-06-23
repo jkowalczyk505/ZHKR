@@ -9,6 +9,7 @@
   transition: all 0.3s ease;
   border: none;
   font-family: $font-main;
+  align-content: center;
 
   &.primary {
     background-color: $dark-color;
@@ -48,5 +49,32 @@
       background-color: red;
       color: $light-color;
     }
+  }
+}
+
+/* Phones */
+@media screen and (max-width: 480px) {
+  .btn {
+    font-size: 0.9rem;           // nieco mniejszy tekst
+    padding: 0.8rem 1.2rem;      // większy obszar dotyku w poziomie
+    border-radius: 4px;
+  }
+}
+
+/* Small tablets / landscape phones */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .btn {
+    font-size: 0.95rem;
+    padding: 0.75rem 1.4rem;
+    border-radius: 5px;
+  }
+}
+
+/* Tablets / small desktops */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .btn {
+    font-size: 1rem;             // domyślny rozmiar
+    padding: 0.7rem 1.5rem;      // domyślny padding
+    border-radius: 6px;          // domyślny radius
   }
 }

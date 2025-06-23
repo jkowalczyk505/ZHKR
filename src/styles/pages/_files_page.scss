@@ -28,3 +28,152 @@
         }
     }
 }
+/* Phones */
+@media screen and (max-width: 480px) {
+  .files-section {
+    padding: 2rem 1.5rem;
+
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .files-list {
+      font-size: 1rem;
+
+      li {
+        margin-bottom: 0.8rem;
+
+        a {
+          display: block;
+          padding: 0.6rem 0.4rem;
+          border-bottom-width: 2px;
+        }
+      }
+    }
+  }
+}
+
+/* Small tablets / landscape phones */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .files-section {
+    padding: 3rem 3rem;
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .files-list {
+      font-size: 1.05rem;
+
+      li {
+        margin-bottom: 0.9rem;
+
+        a {
+          display: inline-block;
+          padding: 0.5rem 0.5rem;
+        }
+      }
+    }
+  }
+}
+
+/* Tablets / small desktops */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .files-section {
+    padding: 4rem 5rem;
+
+    h2 {
+      font-size: 1.9rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .files-list {
+      font-size: 1.1rem;
+
+      li {
+        margin-bottom: 1rem;
+
+        a {
+          padding: 0.5rem 0;
+        }
+      }
+    }
+  }
+}
+
+/* Phones */
+@media screen and (max-width: 480px) {
+  .files-section {
+    padding: 2rem 1.5rem;
+
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .files-list {
+      font-size: 1rem;
+
+      li {
+        margin-bottom: 0.8rem;
+
+        a {
+          display: block;
+          padding: 0.6rem 0.4rem;
+          border-bottom-width: 2px;
+        }
+      }
+    }
+  }
+}
+
+/* Small tablets / landscape phones */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .files-section {
+    padding: 3rem 3rem;
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .files-list {
+      font-size: 1.05rem;
+
+      li {
+        margin-bottom: 0.9rem;
+
+        a {
+          display: inline-block;
+          padding: 0.5rem 0.5rem;
+        }
+      }
+    }
+  }
+}
+
+/* Tablets / small desktops */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .files-section {
+    padding: 4rem 5rem;
+
+    h2 {
+      font-size: 1.9rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .files-list {
+      font-size: 1.1rem;
+
+      li {
+        margin-bottom: 1rem;
+
+        a {
+          padding: 0.5rem 0;
+        }
+      }
+    }
+  }
+}
