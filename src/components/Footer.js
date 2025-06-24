@@ -23,16 +23,16 @@ function Footer() {
           <strong>Kontakt</strong>
           <div className="contact-grid">
             <div className="contact-address">
-              ul.&nbsp;Św.&nbsp;Kawii&nbsp;5
+              Jaroszewy 8A
               <br />
-              30-001&nbsp;Kraków
+              83-236 Jaroszewy
             </div>
 
             <div className="contact-links">
               tel.&nbsp;
               <a href="tel:+48123456789">12&nbsp;345&nbsp;67&nbsp;89</a>
               <br />
-              <a href="mailto:kontakt@zhkr.pl">kontakt@zhkr.pl</a>
+              <a href="mailto:kontakt@zhkr.pl">kontakt@example.com</a>
             </div>
           </div>
         </address>

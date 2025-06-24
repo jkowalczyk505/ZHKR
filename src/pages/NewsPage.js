@@ -52,10 +52,13 @@ function NewsPage() {
             </p>
 
             <div className="news-details">
-              <div
-                className="news-content"
-                dangerouslySetInnerHTML={{ __html: news.opis }}
-              />
+              <div className="news-content">
+                {news.opis
+                  .split(/\r\n\r\n/)            // podział na akapity
+                  .map((paragraph, idx) => (
+                    <p key={idx}>{paragraph}</p>
+                  ))}
+              </div>
 
               {news.images.length > 0 && (
                 <div className="news-gallery">
