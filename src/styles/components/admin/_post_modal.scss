@@ -1,0 +1,181 @@
+.post-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.form-box.post-modal {
+    max-width: 700px;
+    width: 100%;
+    max-height: 90vh;
+    overflow: hidden;
+    border-radius: 8px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+
+    .modal-close-button {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: $secondary-color-darken;
+        cursor: pointer;
+        line-height: 1;
+        transition: 0.2s color ease;
+        display: inline-flex;
+        justify-content: right;
+    }
+
+    .modal-close-button:hover {
+        color: $red-color;
+    }
+
+
+    h2 {
+        margin-bottom: 2rem;
+    }
+
+    form {
+        flex: 1;
+        overflow-y: auto;
+        padding-right: 0.5rem;
+
+        display: flex;
+        flex-direction: column;
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+
+            .form-group {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+
+                label {
+                    font-weight: 600;
+                    font-size: 0.95rem;
+                    color: $secondary-color-darken;
+                }
+
+                .required {
+                    color: $secondary-color;
+                }
+            }
+        }
+
+        .form-field {
+            width: 100%;
+        }
+
+        .actions {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            grid-column: span 2;
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .form-box.modal {
+        max-width: 90%;
+        padding: 1.5rem;
+
+        h2 {
+            font-size: 1.4rem;
+        }
+
+        form {
+            .form-grid {
+                grid-template-columns: 1fr; // 1 kolumna na tablecie
+
+                .form-group {
+                    label {
+                        font-size: 0.9rem;
+                    }
+                }
+
+                .actions {
+                    flex-direction: column;
+                    align-items: stretch;
+                    gap: 0.75rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .form-box.modal {
+        max-width: 95%;
+        padding: 1rem;
+
+        h2 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        form {
+            padding-right: 0; // wyłączenie scrolla poziomego
+
+            .form-grid {
+                grid-template-columns: 1fr; // 1 kolumna na telefonie
+                gap: 0.75rem;
+
+                .form-group {
+                    gap: 0.4rem;
+
+                    label {
+                        font-size: 0.85rem;
+                    }
+                }
+
+                .form-field {
+                    font-size: 0.95rem;
+                }
+
+                .image-group {
+
+                    .dropzone-wrapper,
+                    .image-preview {
+                        text-align: center;
+                        font-size: 0.9rem;
+                    }
+
+                    img {
+                        max-width: 100%;
+                        max-height: 200px;
+                    }
+
+                    .remove-image-btn {
+                        font-size: 1.2rem;
+                        padding: 0.3rem 0.6rem;
+                    }
+                }
+
+                .actions {
+                    flex-direction: column;
+                    gap: 0.5rem;
+                    justify-content: center;
+                    align-items: stretch;
+                }
+            }
+        }
+
+        .modal-close-button {
+            font-size: 1.3rem;
+            align-self: flex-end;
+        }
+    }
+}

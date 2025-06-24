@@ -3,6 +3,7 @@ import RequireAuth from "./components/RequireAuth";
 import LoginPage from "./pages/LoginPage";
 import AdminPage from "./pages/admin/AdminPage";
 import AdminBreedingPage from "./pages/admin/AdminBreedingPage";
+import AdminPostsPage from "./pages/admin/AdminPostsPage";
 import NotFound from "./pages/NotFound";
 import FilesPage from "./pages/FilesPage";
 import ContactPage from "./pages/ContactPage";
@@ -33,6 +34,14 @@ const routes = [
     element: (
       <RequireAuth>
         <AdminBreedingPage />
+      </RequireAuth>
+    ),
+  },
+  {
+    path: "/admin/posts",
+    element: (
+      <RequireAuth>
+        <AdminPostsPage />
       </RequireAuth>
     ),
   },
