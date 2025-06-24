@@ -53,7 +53,7 @@ function AdminPostsPage() {
   };
 
   const handleEdit = (slug) => {
-    const post = posts.find((p) => p.slug === slug);
+    const post = posts.find((p) => p.url === slug);
     setSelectedPost(post);
     setModalOpen(true);
   };
