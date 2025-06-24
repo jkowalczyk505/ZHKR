@@ -1,0 +1,107 @@
+.admin-posts-page {
+    padding: 6rem;
+
+    h1 {
+        font-family: $font-heading;
+        color: $secondary-color;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .post-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem 3rem;
+        margin: 0 auto;
+    }
+
+
+    .post-item-wrapper.admin {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .admin-controls {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
+
+        .btn {
+            flex: 1;
+            margin: 0 0.5rem;
+            font-size: 1rem;
+            padding: 0.8rem;
+        }
+    }
+
+    .add-post {
+        margin-top: 4rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .btn {
+            font-size: 1.2rem;
+            padding: 0.8rem 2rem;
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .admin-posts-page {
+        padding: 4rem;
+
+        h1 {
+            font-size: 1.8rem;
+        }
+
+        .admin-controls {
+            flex-direction: column;
+            align-items: stretch;
+
+            .btn {
+                margin: 0.5rem 0;
+                font-size: 1rem;
+            }
+        }
+
+        .add-post {
+            flex-direction: column;
+            text-align: center;
+
+            .btn {
+                font-size: 1.1rem;
+                padding: 0.8rem 1.5rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-posts-page {
+        padding: 2rem;
+
+        h1 {
+            font-size: 1.5rem;
+        }
+
+        .post-list {
+            grid-template-columns: 1fr;
+        }
+
+        .admin-controls {
+            .btn {
+                font-size: 0.95rem;
+                padding: 0.5rem 1rem;
+            }
+        }
+
+        .add-post {
+            .btn {
+                font-size: 1rem;
+                padding: 0.6rem 1.2rem;
+            }
+        }
+    }
+}

@@ -194,6 +194,7 @@ function BreedingModal({ isOpen, onClose, onSave, initialData }) {
             ))}
 
             <ImageDropzone
+              label="Zdjęcie hodowli"
               previewUrl={previewUrl}
               setPreviewUrl={setPreviewUrl}
               setImageFile={setImageFile}
