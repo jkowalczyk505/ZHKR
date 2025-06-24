@@ -33,6 +33,7 @@ function PostModal({ isOpen, onClose, onSave, initialData, postId }) {
   const generateSlug = (text) =>
     text
       .toLowerCase()
+      .replace(/ł/g, "l")
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
       .replace(/\s+/g, "-")
