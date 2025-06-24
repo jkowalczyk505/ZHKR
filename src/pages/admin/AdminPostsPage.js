@@ -34,7 +34,9 @@ function AdminPostsPage() {
 
   const fetchPosts = async () => {
     try {
-      const response = await fetch(`${API_URL}/api/posts`);
+      const response = await fetch(`${API_URL}/api/posts/admin`, {
+        credentials: "include",
+      });
       if (!response.ok) throw new Error("Błąd pobierania danych.");
       const data = await response.json();
       const sorted = data.sort((a, b) => new Date(b.data) - new Date(a.data));

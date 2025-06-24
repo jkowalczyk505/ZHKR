@@ -11,52 +11,49 @@ function MultiImageDropzone({
   deletedImages,
   setDeletedImages,
 }) {
-  const [loadingIndexes, setLoadingIndexes] = useState([]);
+  const [loadingIdx, setLoadingIdx] = useState([]);
 
-  const onDrop = (acceptedFiles) => {
-    const newUrls = acceptedFiles.map((f) => URL.createObjectURL(f));
-    const start = previewUrls.length;
-    const newIdx = acceptedFiles.map((_, i) => start + i);
-
-    setImageFiles((p) => [...p, ...acceptedFiles]);
-    setPreviewUrls((p) => [...p, ...newUrls]);
-    setLoadingIndexes((p) => [...p, ...newIdx]);
-  };
-
+  /* ========== drag & drop ========== */
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
     accept: { "image/*": [] },
     multiple: true,
+    onDrop: (accepted) => {
+      const tmpUrls = accepted.map((f) => URL.createObjectURL(f));
+      setPreviewUrls((p) => [...p, ...tmpUrls]);
+      setImageFiles((p) => [...p, ...accepted]);
+
+      /* spinner dla nowych */
+      const start = previewUrls.length;
+      setLoadingIdx((p) => [...p, ...accepted.map((_, i) => start + i)]);
+    },
   });
 
-  const removeImage = (i) => {
-    // jeśli to lokalny plik jeszcze nie wysłany
-    if (imageFiles[i]) {
-      setImageFiles((p) => p.filter((_, idx) => idx !== i));
+  /* ========== pojedyncze usunięcie ========== */
+  const removeImage = (idx) => {
+    /*  nowo dodany plik – tylko lokalnie  */
+    if (imageFiles[idx]) {
+      setImageFiles((p) => p.filter((_, i) => i !== idx));
     } else {
-      // istniejący z serwera → zaznacz do usunięcia
-      const fileName = previewUrls[i].split("/").pop();
-      setDeletedImages((p) => [...p, fileName]);
+      /*  plik istnieje na serwerze  */
+      const name = previewUrls[idx].split("/").pop();
+      setDeletedImages((p) => [...p, name]);
     }
-    setPreviewUrls((p) => p.filter((_, idx) => idx !== i));
-    setLoadingIndexes((p) => p.filter((idx) => idx !== i));
-  };
-
-  const handleImageLoad = (i) => {
-    setLoadingIndexes((p) => p.filter((idx) => idx !== i));
+    setPreviewUrls((p) => p.filter((_, i) => i !== idx));
+    setImageFiles((p) => p.filter((_, i) => i !== idx));
+    setLoadingIdx((p) => p.filter((i) => i !== idx));
   };
 
   return (
     <div className="form-group image-group">
       <label>{label}</label>
+
       <div {...getRootProps()} className="dropzone-wrapper">
         <input {...getInputProps()} />
         <p>
-          {isDragActive
-            ? "Upuść zdjęcia..."
-            : "Kliknij lub przeciągnij zdjęcia"}
+          {isDragActive ? "Upuść zdjęcia…" : "Kliknij lub przeciągnij zdjęcia"}
         </p>
       </div>
+
       <div className="multi-image-preview">
         {previewUrls.map((url, i) => (
           <div
@@ -64,17 +61,19 @@ function MultiImageDropzone({
             className="image-preview"
             style={{ position: "relative" }}
           >
-            {loadingIndexes.includes(i) && (
+            {loadingIdx.includes(i) && (
               <div className="preview-spinner">
                 <Spinner />
               </div>
             )}
+
             <img
               src={url}
               alt={`Zdjęcie ${i}`}
-              onLoad={() => handleImageLoad(i)}
-              style={{ display: loadingIndexes.includes(i) ? "none" : "block" }}
+              onLoad={() => setLoadingIdx((p) => p.filter((n) => n !== i))}
+              style={{ display: loadingIdx.includes(i) ? "none" : "block" }}
             />
+
             <button
               type="button"
               className="remove-image-btn"

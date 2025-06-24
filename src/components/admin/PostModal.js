@@ -56,6 +56,7 @@ function PostModal({ isOpen, onClose, onSave, initialData, postId }) {
         .then((data) => {
           const urls = data.images.map((img) => `${API_URL}${img.url}`);
           setPreviewUrls(urls);
+          setImageFiles(Array(urls.length).fill(null));
         })
         .catch((e) => {
           console.warn("Błąd pobierania zdjęć:", e);
@@ -90,7 +91,8 @@ function PostModal({ isOpen, onClose, onSave, initialData, postId }) {
       setIsSaving(true);
       const fd = new FormData();
       Object.entries(formData).forEach(([k, v]) => fd.append(k, v));
-      imageFiles.forEach((f) => fd.append("images", f));
+      const newImages = imageFiles.filter(Boolean);
+      newImages.forEach((f) => fd.append("images", f));
       deletedImages.forEach((name) => fd.append("deleteImage", name));
       await onSave(fd);
       setErrorMessage("");
