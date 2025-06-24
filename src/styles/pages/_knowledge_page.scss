@@ -74,7 +74,7 @@
 
             &--three {
                 justify-content: center;
-                margin-bottom: 3rem;
+                margin-bottom: 2rem;
             }
 
             .admin-tile {
@@ -102,9 +102,9 @@
             }
 
             .container-with-two-sides {
-                flex-direction: column;
-                gap: 4rem;
-                margin-bottom: 2rem;
+                flex-direction: column-reverse;
+                gap: 2rem;
+                margin-bottom: 3rem;
 
                 img {
                     width: 80%;
@@ -113,18 +113,6 @@
 
                 .subjects-right {
                     width: 100%;
-                }
-            }
-
-            .subjects-below {
-                .subject-below {
-                    .subject-title {
-                        font-size: 1.1rem;
-                    }
-
-                    .subject-content {
-                        font-size: 0.95rem;
-                    }
                 }
             }
         }
@@ -164,27 +152,17 @@
     .knowledge-page {
         .characteristic {
             .characteristic-title {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
                 margin-bottom: 2rem;
             }
 
             .container-with-two-sides {
-                gap: 2rem;
+                gap: 1rem;
+                margin-bottom: 2rem;
+                flex-direction: column-reverse;
 
                 img {
                     width: 100%;
-                }
-            }
-
-            .subjects-below {
-                .subject-below {
-                    .subject-title {
-                        font-size: 1rem;
-                    }
-
-                    .subject-content {
-                        font-size: 0.9rem;
-                    }
                 }
             }
         }
@@ -205,10 +183,14 @@
                     padding: 2rem 1rem;
                     font-size: 1rem;
                 }
+                &--two,
+                &--three {
+                    margin-bottom: 1rem;
+                }
             }
 
             p {
-                font-size: 1.3rem;
+                font-size: 1.1rem;
             }
         }
     }

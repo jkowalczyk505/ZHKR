@@ -37,3 +37,81 @@
         }
     }
 }
+
+.news-page {
+  .news-container {
+    // opcjonalnie zmniejszamy padding sekcji na mniejszych ekranach
+    @media (max-width: 1024px) {
+      padding: 4rem 2rem;
+    }
+    @media (max-width: 768px) {
+      padding: 2rem 1rem;
+    }
+
+    h1 {
+      // Tablet
+      @media (max-width: 1024px) {
+        font-size: 4vw;
+      }
+      // Telefon
+      @media (max-width: 768px) {
+        font-size: 6vw;
+      }
+      // Bardzo mały ekran
+      @media (max-width: 480px) {
+        font-size: 8vw;
+      }
+    }
+
+    .news-date {
+      // Telefon
+      @media (max-width: 768px) {
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
+      }
+    }
+
+    .news-details {
+      // poniżej 900px jednokolumnowo (już masz)
+      @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+      }
+
+      // na tablecie daj większy odstęp między contentem a galerią
+      @media (max-width: 1024px) {
+        gap: 1.5rem;
+      }
+      // na telefonie trochę mniejszy gap
+      @media (max-width: 768px) {
+        gap: 1rem;
+      }
+
+      .news-content {
+        // Telefon: mniejszy font i większy interlinię
+        @media (max-width: 768px) {
+          font-size: 0.95rem;
+          line-height: 1.6;
+        }
+      }
+
+      .news-gallery {
+        // Tablet: nieco mniejsze obrazki w galerii
+        @media (max-width: 1024px) {
+          img {
+            max-width: 95%;
+          }
+        }
+        // Telefon: pełna szerokość
+        @media (max-width: 768px) {
+          img {
+            max-width: 100%;
+          }
+        }
+        // Małe ekrany: odstęp do góry
+        @media (max-width: 480px) {
+          margin-top: 1.5rem;
+        }
+      }
+    }
+  }
+}
