@@ -1,7 +1,6 @@
 - seo + sitemap + robots + index podmienic dane + manifest json
 - backend zabezpieczyc
-- modal - dodawanie i edycja postów (+ zdjecia)
-- spinner + error + floating error na zadanie na podstronie postow admina
+- paginacja nie przenosi na gore sekcji
 - jak dolaczyc zatrzymuje sie na spinerze
 
 - jak dołączyć + responsywnosc
