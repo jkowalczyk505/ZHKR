@@ -59,19 +59,19 @@ function AdminPostsPage() {
   };
 
   const handleDelete = (slug) => {
-    const post = posts.find((p) => p.slug === slug);
+    const post = posts.find((p) => p.url === slug);
     setConfirmPost(post);
   };
 
   const confirmDelete = async () => {
     setIsDeleting(true);
     try {
-      const response = await fetch(`${API_URL}/api/posts/${confirmPost.slug}`, {
+      const response = await fetch(`${API_URL}/api/posts/${confirmPost.id}`, {
         method: "DELETE",
         credentials: "include",
       });
       if (!response.ok) throw new Error("Błąd usuwania posta.");
-      setPosts((prev) => prev.filter((p) => p.slug !== confirmPost.slug));
+      setPosts((prev) => prev.filter((p) => p.id !== confirmPost.id));
       setAlertMessage("Post został usunięty.");
     } catch (err) {
       console.error(err);
@@ -83,36 +83,49 @@ function AdminPostsPage() {
     }
   };
 
-  const handleSave = async (data) => {
+  const handleSave = async (formDataFromModal) => {
     try {
       const isEdit = !!selectedPost;
-      const formData = new FormData();
-      for (const key in data) {
-        if (key !== "image" && key !== "deleteImage") {
-          formData.append(key, data[key] || "");
-        }
-      }
 
-      if (data.deleteImage) {
-        formData.append("deleteImage", "true");
-      } else if (data.image instanceof File) {
-        formData.append("image", data.image);
+      // 1. Utwórz dane posta bez zdjęć
+      const postData = new FormData();
+      for (const [key, value] of formDataFromModal.entries()) {
+        if (key !== "images") postData.append(key, value);
       }
 
       const response = await fetch(
         isEdit
-          ? `${API_URL}/api/posts/${selectedPost.slug}`
+          ? `${API_URL}/api/posts/${selectedPost.id}`
           : `${API_URL}/api/posts`,
         {
           method: isEdit ? "PUT" : "POST",
           credentials: "include",
-          body: formData,
+          body: postData,
         }
       );
 
       if (!response.ok) {
         const result = await response.json().catch(() => ({}));
         throw new Error(result.message || "Błąd zapisu.");
+      }
+
+      const result = await response.json(); // zawiera `id` nowego posta
+      const postId = isEdit ? selectedPost.id : result.id;
+
+      // 2. Jeśli są zdjęcia, wyślij je osobno
+      const images = formDataFromModal.getAll("images");
+      if (images.length > 0) {
+        const imgForm = new FormData();
+        images.forEach((img) => imgForm.append("images", img));
+        const imgRes = await fetch(`${API_URL}/api/posts/${postId}/images`, {
+          method: "POST",
+          credentials: "include",
+          body: imgForm,
+        });
+
+        if (!imgRes.ok) {
+          throw new Error("Nie udało się zapisać zdjęć.");
+        }
       }
 
       await fetchPosts();
@@ -204,6 +217,7 @@ function AdminPostsPage() {
       <PostModal
         isOpen={modalOpen}
         initialData={selectedPost}
+        postId={selectedPost?.id}
         onClose={() => setModalOpen(false)}
         onSave={handleSave}
       />

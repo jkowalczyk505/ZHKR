@@ -1,3 +1,4 @@
+// PostModal.jsx
 import React, { useState, useEffect } from "react";
 import Button from "../Button";
 import FloatingErrorAlert from "../FloatingErrorAlert";
@@ -6,7 +7,7 @@ import Spinner from "../Spinner";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-function PostModal({ isOpen, onClose, onSave, initialData }) {
+function PostModal({ isOpen, onClose, onSave, initialData, postId }) {
   const [formData, setFormData] = useState({
     tytul: "",
     url: "",
@@ -15,6 +16,7 @@ function PostModal({ isOpen, onClose, onSave, initialData }) {
   });
   const [imageFiles, setImageFiles] = useState([]);
   const [previewUrls, setPreviewUrls] = useState([]);
+  const [deletedImages, setDeletedImages] = useState([]);
   const [imagesLoading, setImagesLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [isSaving, setIsSaving] = useState(false);
@@ -39,7 +41,6 @@ function PostModal({ isOpen, onClose, onSave, initialData }) {
       .replace(/^-+/, "")
       .replace(/-+$/, "");
 
-  // Załaduj dane formularza + pobierz istniejące obrazki
   useEffect(() => {
     if (!isOpen) return;
     if (initialData) {
@@ -47,6 +48,7 @@ function PostModal({ isOpen, onClose, onSave, initialData }) {
       setFormData({ tytul, url, opis, widocznosc: String(widocznosc ?? 1) });
       setUrlManuallyEdited(true);
       setImageFiles([]);
+      setDeletedImages([]);
 
       setImagesLoading(true);
       fetch(`${API_URL}/api/posts/${id}/images`)
@@ -63,10 +65,10 @@ function PostModal({ isOpen, onClose, onSave, initialData }) {
           setImagesLoading(false);
         });
     } else {
-      // czysty formularz
       setFormData({ tytul: "", url: "", opis: "", widocznosc: "1" });
       setPreviewUrls([]);
       setImageFiles([]);
+      setDeletedImages([]);
       setUrlManuallyEdited(false);
     }
   }, [isOpen, initialData]);
@@ -89,6 +91,7 @@ function PostModal({ isOpen, onClose, onSave, initialData }) {
       const fd = new FormData();
       Object.entries(formData).forEach(([k, v]) => fd.append(k, v));
       imageFiles.forEach((f) => fd.append("images", f));
+      deletedImages.forEach((name) => fd.append("deleteImage", name));
       await onSave(fd);
       setErrorMessage("");
     } catch (err) {
@@ -139,7 +142,6 @@ function PostModal({ isOpen, onClose, onSave, initialData }) {
                     <span className="required">*</span>
                   )}
                 </label>
-
                 {field === "opis" ? (
                   <textarea
                     id={field}
@@ -223,12 +225,15 @@ function PostModal({ isOpen, onClose, onSave, initialData }) {
           </div>
 
           <MultiImageDropzone
+            postId={postId}
             label="Zdjęcia posta"
             loading={imagesLoading}
             previewUrls={previewUrls}
             setPreviewUrls={setPreviewUrls}
             imageFiles={imageFiles}
             setImageFiles={setImageFiles}
+            deletedImages={deletedImages}
+            setDeletedImages={setDeletedImages}
           />
 
           <div className="actions">

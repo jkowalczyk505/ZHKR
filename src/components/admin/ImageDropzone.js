@@ -1,109 +1,101 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import Spinner from "../Spinner";
 
-function MultiImageDropzone({
-  label = "Zdjęcia",
-  previewUrls = [],
-  setPreviewUrls,
-  imageFiles = [],
-  setImageFiles,
+function ImageDropzone({
+  label = "Zdjęcie",
+  previewUrl,
+  setPreviewUrl,
+  setImageFile,
+  setRemoveImage,
 }) {
-  const [loadingIndexes, setLoadingIndexes] = useState([]);
+  // 🔹 stan ładowania podglądu
+  const [isImgLoading, setIsImgLoading] = useState(false);
 
   const onDrop = (acceptedFiles) => {
-    const newPreviews = acceptedFiles.map((file) => URL.createObjectURL(file));
-    setPreviewUrls((prev) => [...prev, ...newPreviews]);
-    setImageFiles((prev) => [...prev, ...acceptedFiles]);
-
-    // Spinner dla nowych zdjęć
-    const newIndexes = Array.from(
-      { length: acceptedFiles.length },
-      (_, i) => previewUrls.length + i
-    );
-    setLoadingIndexes((prev) => [...prev, ...newIndexes]);
+    const file = acceptedFiles[0];
+    if (file) {
+      setImageFile(file);
+      setPreviewUrl(URL.createObjectURL(file));
+      setRemoveImage(false);
+      setIsImgLoading(true); // 🔹 uruchamiamy spinner
+    }
   };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: { "image/*": [] },
+    maxFiles: 1,
   });
 
+  // 🔹 gdy zmieni się URL podglądu, też włącz spinner
   useEffect(() => {
-    if (previewUrls.length === 0) {
-      setLoadingIndexes([]);
+    if (previewUrl) {
+      setIsImgLoading(true);
     }
-  }, [previewUrls]);
-
-  const handleRemove = (index) => {
-    setPreviewUrls((prev) => prev.filter((_, i) => i !== index));
-    setImageFiles((prev) => prev.filter((_, i) => i !== index));
-    setLoadingIndexes((prev) => prev.filter((i) => i !== index));
-  };
+  }, [previewUrl]);
 
   return (
     <div className="form-group image-group">
       <label>{label}</label>
-      <div {...getRootProps()} className="dropzone-wrapper">
-        <input {...getInputProps()} />
-        {isDragActive ? (
-          <p>Upuść zdjęcia tutaj...</p>
-        ) : (
-          <p>Kliknij lub przeciągnij zdjęcia tutaj</p>
-        )}
-      </div>
 
-      <div className="image-preview-multi">
-        {previewUrls.map((url, index) => (
-          <div
-            key={index}
-            className="image-preview"
-            style={{ position: "relative" }}
-          >
-            {loadingIndexes.includes(index) && (
-              <div
-                className="preview-spinner"
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  background: "rgba(255,255,255,0.7)",
-                  zIndex: 1,
-                }}
-              >
-                <Spinner />
-              </div>
-            )}
-            <img
-              src={url}
-              alt={`Preview ${index}`}
+      {!previewUrl ? (
+        <div {...getRootProps()} className="dropzone-wrapper">
+          <input {...getInputProps()} />
+          {isDragActive ? (
+            <p>Upuść zdjęcie tutaj...</p>
+          ) : (
+            <p>Kliknij lub przeciągnij zdjęcie tutaj</p>
+          )}
+        </div>
+      ) : (
+        <div className="image-preview" style={{ position: "relative" }}>
+          {/* 🔹 Spinner nakładany na obraz */}
+          {isImgLoading && (
+            <div
+              className="preview-spinner"
               style={{
-                maxWidth: "100%",
-                borderRadius: "5px",
-                display: loadingIndexes.includes(index) ? "none" : "block",
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                background: "rgba(255,255,255,0.7)",
+                zIndex: 1,
               }}
-              onLoad={() =>
-                setLoadingIndexes((prev) => prev.filter((i) => i !== index))
-              }
-            />
-            <button
-              type="button"
-              className="remove-image-btn"
-              onClick={() => handleRemove(index)}
-              aria-label="Usuń zdjęcie"
             >
-              ×
-            </button>
-          </div>
-        ))}
-      </div>
+              <Spinner />
+            </div>
+          )}
+          <img
+            src={previewUrl}
+            alt="Podgląd zdjęcia"
+            style={{
+              maxWidth: "100%",
+              borderRadius: "5px",
+              display: isImgLoading ? "none" : "block", // ukrywamy aż załaduje
+            }}
+            onLoad={() => setIsImgLoading(false)} // 🔹 wyłączamy spinner
+          />
+          <button
+            type="button"
+            className="remove-image-btn"
+            onClick={() => {
+              setPreviewUrl("");
+              setImageFile(null);
+              setRemoveImage(true);
+            }}
+            aria-label="Usuń zdjęcie"
+          >
+            ×
+          </button>
+        </div>
+      )}
     </div>
   );
 }
 
-export default MultiImageDropzone;
+export default ImageDropzone;
