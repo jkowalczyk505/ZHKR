@@ -142,6 +142,7 @@
 
 @media (max-width: 1024px) {
   .breeding-tile {
+    background-color: $light-color;
     flex-direction: column;
     margin-bottom: 2rem;  
     .breeding-tile-image {

@@ -67,3 +67,87 @@
         }
     }
 }
+
+// TABLETY
+@media (max-width: 1024px) {
+  .contact-section {
+    .contact-tile {
+      padding: 2rem;
+
+      .contact-title {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .contact-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+
+        .left-contact,
+        .right-contact {
+          padding: 0 1rem;
+        }
+
+        .right-contact {
+          border-left: none;
+          border-top: 1px solid $secondary-color;
+          h3 {
+            margin-top: 1rem;
+          }
+        }
+
+        .left-contact {
+            .green-pig {
+            margin-top: 0rem;
+            img {
+                width: 200px;
+            }
+            }
+        }
+      }
+    }
+  }
+}
+
+// TELEFONY
+@media (max-width: 768px) {
+  .contact-section {
+    .contact-tile {
+      padding: 1rem;
+
+      .contact-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .contact-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+
+        .left-contact,
+        .right-contact {
+          padding: 0 0.5rem;
+        }
+
+        .right-contact {
+          border-top: 1px solid $secondary-color;
+          h3 {
+            font-size: 1.3rem;
+          }
+        }
+
+        .left-contact {
+            h3 {
+                font-size: 1.4rem;
+            }
+            .green-pig {
+            margin-top: 1.5rem;
+            img {
+                width: 150px;
+            }
+            }
+        }
+      }
+    }
+  }
+}
