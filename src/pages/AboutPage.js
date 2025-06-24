@@ -11,7 +11,7 @@ function AboutPage() {
         subtitle="Nasza działalność to więcej niż hodowla – to troska, wiedza i zaangażowanie"
       />
       <section className="light-section about-section">
-        <h2>O nas</h2>
+        <h2 className="with-line">O nas</h2>
         <p>Ea consequat quis occaecat et ipsum. Qui ex quis ipsum nulla tempor. Proident amet aute consequat proident incididunt id minim qui minim voluptate. Velit occaecat ipsum cillum ad amet commodo laborum do dolor ad.
 
 Commodo id aliqua consectetur enim deserunt sit excepteur aliqua sit laboris aliquip. Labore magna qui culpa adipisicing tempor sunt excepteur Lorem est incididunt velit duis est excepteur. Exercitation irure Lorem et magna voluptate est reprehenderit ullamco cillum. Veniam eu dolore ea voluptate anim dolor culpa ipsum incididunt ad.

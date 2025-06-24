@@ -33,7 +33,7 @@ function ContactPage() {
                 </li>
                 <li>
                   <FaMapMarkerAlt />{" "}
-                  <span>ul. Przykładowa 123<br />00-001 Warszawa</span>
+                  <span>Jaroszewy 8A<br />83-236 Jaroszewy</span>
                 </li>
               </ul>
               <div className="green-pig">
