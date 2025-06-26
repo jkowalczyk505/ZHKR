@@ -15,6 +15,10 @@ const files = [
     name: "Logo ZHKR (PNG)",
     url: "/ZHKR/uploads/files/logo.png",
   },
+  {
+    name: "Polityka Prywatności",
+    url: "/ZHKR/uploads/files/Polityka_Prywatnosci_ZHKR.pdf"
+  }
 ];
 
 function FilesPage() {

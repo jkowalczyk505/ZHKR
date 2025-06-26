@@ -116,6 +116,13 @@ export default function ContactForm() {
         {showErr("message") && <span>{errors.message}</span>}
       </label>
 
+      <p className="privacy-note">
+        Wysyłając formularz, akceptujesz{" "}
+        <a href="/ZHKR/uploads/files/Polityka_Prywatnosci_ZHKR.pdf" target="_blank" rel="noopener noreferrer">
+          politykę prywatności
+        </a>.
+      </p>
+
       <Button type="submit" variant="primary" disabled={hasError}>
         Wyślij
       </Button>
